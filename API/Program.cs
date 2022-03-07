@@ -1,3 +1,4 @@
+using DAL.Repos;
 using Domain.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
