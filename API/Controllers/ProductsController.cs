@@ -7,9 +7,9 @@ namespace API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        public ActionResult GetAllProducts()
+        public ActionResult<string> GetAllProducts()
         {
-            return Ok();
+            return "Hello World!";
         }
     }
 }
