@@ -10,5 +10,7 @@ namespace Domain.Repositories
     public interface IProductRepository
     {
         public List<Product> GetAllProducts();
+        public Product GetByID(int ID);
+        public bool AddToCart(int ID);
     }
 }
