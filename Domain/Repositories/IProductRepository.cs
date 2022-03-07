@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Repositories
 {
-    internal interface IProductRepository
+    public interface IProductRepository
     {
         public List<Product> GetAllProducts();
     }
