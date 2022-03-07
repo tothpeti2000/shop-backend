@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductRepository, MockProductRepository>();
 
 var app = builder.Build();
+
 app.UseCors(options => options.AllowAnyOrigin());
 
 // Configure the HTTP request pipeline.
