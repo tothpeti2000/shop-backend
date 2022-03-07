@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Domain.Models;
+using Domain.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -7,9 +9,16 @@ namespace API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        public ActionResult<string> GetAllProducts()
+        private IProductRepository repository;
+
+        public ProductsController(IProductRepository repository)
         {
-            return "Hello World!";
+            this.repository = repository;
+        }
+
+        public ActionResult<List<Product>> GetAllProducts()
+        {
+            return repository.GetAllProducts();
         }
     }
 }
