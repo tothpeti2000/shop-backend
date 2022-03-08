@@ -16,15 +16,15 @@ namespace API.Controllers
             this.repository = repository;
         }
 
-        public ActionResult<List<string>> GetAllCategories()
+        public ActionResult<List<Category>> GetAllCategories()
         {
             return repository.GetAllCategories();
         }
 
-        [Route("hierarchy")]
+        /*[Route("hierarchy")]
         public ActionResult<Dictionary<string, List<string>>> GetHierarchy()
         {
             return repository.GetCategoryHierarchy();
-        }
+        }*/
     }
 }
