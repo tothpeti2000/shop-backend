@@ -20,12 +20,21 @@ namespace DAL.Repos.MockRepositories
 
         public List<Category> GetAllCategories()
         {
-            throw new NotImplementedException();
+            return categories;
         }
 
         public Dictionary<Category, List<Category>> GetCategoryHierarchy()
         {
-            throw new NotImplementedException();
+            var hierarchy = new Dictionary<Category, List<Category>>();
+
+            foreach (var c in categories)
+            {
+                var children = categories.FindAll(category => category.ParentCategoryName == c.Name);
+
+                hierarchy.Add(c, children);
+            }
+
+            return hierarchy;
         }
     }
 }
