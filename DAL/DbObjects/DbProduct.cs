@@ -12,8 +12,12 @@ namespace DAL.DbObjects
         public string Name { get; set; }
         public double Price { get; set; }
         public int Stock { get; set; }
+        public double AverageRating { get; set; }
 
         public int CategoryID { get; set; }
         public DbCategory Category { get; set; }
+
+        public int ReviewID { get; set; }
+        public DbReview Review { get; set; }
     }
 }

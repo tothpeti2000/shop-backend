@@ -18,14 +18,12 @@ namespace DAL.Repos.MockRepositories
             new Category(4, "Cars", null)
         };
 
-        public List<string> GetAllCategories()
+        public List<Category> GetAllCategories()
         {
-            return categories.
-                Select(c => c.Name).
-                ToList();
+            return categories;
         }
 
-        public Dictionary<string, List<string>> GetCategoryHierarchy()
+        /*public Dictionary<string, List<string>> GetCategoryHierarchy()
         {
             var hierarchy = new Dictionary<string, List<string>>();
 
@@ -39,6 +37,6 @@ namespace DAL.Repos.MockRepositories
             }
 
             return hierarchy;
-        }
+        }*/
     }
 }
