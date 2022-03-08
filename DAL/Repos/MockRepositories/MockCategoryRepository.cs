@@ -18,20 +18,24 @@ namespace DAL.Repos.MockRepositories
             new Category(4, "Cars", null)
         };
 
-        public List<Category> GetAllCategories()
+        public List<string> GetAllCategories()
         {
-            return categories;
+            return categories.
+                Select(c => c.Name).
+                ToList();
         }
 
-        public Dictionary<Category, List<Category>> GetCategoryHierarchy()
+        public Dictionary<string, List<string>> GetCategoryHierarchy()
         {
-            var hierarchy = new Dictionary<Category, List<Category>>();
+            var hierarchy = new Dictionary<string, List<string>>();
 
             foreach (var c in categories)
             {
-                var children = categories.FindAll(category => category.ParentCategoryName == c.Name);
+                var children = categories.FindAll(category => category.ParentCategoryName == c.Name)
+                    .Select(c => c.Name)
+                    .ToList();
 
-                hierarchy.Add(c, children);
+                hierarchy.Add(c.Name, children);
             }
 
             return hierarchy;
