@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Repositories
 {
-    public interface IProductRepository
+    public interface ICategoryRepository
     {
-        public List<Product> GetAllProducts();
-        public Product GetByID(int ID);
-        public bool AddToCart(int ID);
+        public List<Category> GetAllCategories();
+        public Dictionary<Category, List<Category>> GetCategoryHierarchy();
     }
 }

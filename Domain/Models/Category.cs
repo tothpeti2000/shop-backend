@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    internal class Category
+    public class Category
     {
+        public Category(int Id, string name, string parentCategoryName)
+        {
+            ID = Id;
+            Name = name;
+            ParentCategoryName = parentCategoryName;
+        }
+
         public int ID { get; set; }
         public string Name { get; set; }
         public string ParentCategoryName { get; set; }
