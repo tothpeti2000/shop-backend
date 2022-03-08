@@ -8,5 +8,6 @@ namespace DAL.DbObjects
 {
     public class AspNetUser
     {
+        public int ID { get; set; }
     }
 }
