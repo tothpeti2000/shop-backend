@@ -25,6 +25,16 @@ namespace DAL.Repos
                 .ToList();
         }
 
+        public Product GetByID(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AddToCart(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
         private Product ToModel(DbProduct dbProduct)
         {
             return new Product(dbProduct.ID, dbProduct.Name, dbProduct.Price, dbProduct.Stock, dbProduct.Category.Name);
