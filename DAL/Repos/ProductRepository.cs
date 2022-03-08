@@ -11,9 +11,9 @@ namespace DAL.Repos
 {
     internal class ProductRepository : IProductRepository
     {
-        private readonly ProductContext db;
+        private readonly ShopContext db;
 
-        public ProductRepository(ProductContext db)
+        public ProductRepository(ShopContext db)
         {
             this.db = db;
         }
