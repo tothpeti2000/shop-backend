@@ -12,7 +12,7 @@ builder.Services.AddCors(c => c.AddPolicy("AllowOrigin", options => options.Allo
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IProductRepository, MockProductRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, MockCategoryRepository>();
 
 var app = builder.Build();
