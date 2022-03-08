@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    internal class ShopContext: DbContext
+    public class ShopContext: DbContext
     {
         public DbSet<DbProduct> Products { get; set; }
         public DbSet<DbCategory> Categories { get; set; }

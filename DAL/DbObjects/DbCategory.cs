@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.DbObjects
 {
-    internal class DbCategory
+    public class DbCategory
     {
         public int ID { get; set; }
         public string Name { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.DbObjects
 {
-    internal class AspNetUser
+    public class AspNetUser
     {
     }
 }

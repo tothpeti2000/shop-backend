@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.DbObjects
 {
-    internal class DbReview
+    public class DbReview
     {
         public int ID { get; set; }
         public string Text { get; set; }
