@@ -17,7 +17,7 @@ namespace DAL.DbObjects
         public int CategoryID { get; set; }
         public DbCategory Category { get; set; }
 
-        public List<int> ReviewIDs { get; set; }
-        public List<DbReview> Reviews { get; set; }
+        /*public List<int> ReviewIDs { get; set; }
+        public List<DbReview> Reviews { get; set; }*/
     }
 }

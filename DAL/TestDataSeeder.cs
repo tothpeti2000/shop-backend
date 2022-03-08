@@ -21,7 +21,7 @@ namespace DAL
                     Stock = 10,
                     AverageRating = 5,
                     CategoryID = 1,
-                    ReviewIDs = new List<int> { 1, 2 },
+                    //ReviewIDs = new List<int> { 1, 2 },
                 },
                 new DbProduct
                 {
@@ -40,7 +40,7 @@ namespace DAL
                     Stock = 10,
                     AverageRating = 5,
                     CategoryID = 1,
-                    ReviewIDs = new List<int> { 1, 2, 3 }
+                    //ReviewIDs = new List<int> { 1, 2, 3 }
                 },
                 new DbProduct
                 {
@@ -95,7 +95,7 @@ namespace DAL
                     Stock = 0,
                     AverageRating = 5,
                     CategoryID = 1,
-                    ReviewIDs = new List<int> { 1, 2 }
+                    //ReviewIDs = new List<int> { 1, 2 }
                 },
                 new DbProduct
                 {
