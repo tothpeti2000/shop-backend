@@ -27,7 +27,15 @@ namespace DAL.Repos
 
         public Product GetByID(int ID)
         {
-            throw new NotImplementedException();
+            var dbProduct = db.Products
+                .FirstOrDefault(p => p.ID == ID);
+
+            if (dbProduct == null)
+            {
+                return null;
+            }
+
+            return ToModel(dbProduct);
         }
 
         public bool AddToCart(int ID)
