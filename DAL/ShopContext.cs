@@ -22,6 +22,9 @@ namespace DAL
             var categories = TestDataSeeder.GetCategories();
 
             modelBuilder.Entity<DbProduct>()
+                .ToTable("Product");
+
+            modelBuilder.Entity<DbProduct>()
                 .HasOne(p => p.Category);
 
             /*modelBuilder.Entity<DbProduct>()
