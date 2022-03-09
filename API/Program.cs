@@ -20,6 +20,13 @@ builder.Services.AddScoped<ICategoryRepository, MockCategoryRepository>();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    TestDataSeeder.Initialize(services);
+}
+
 app.UseCors(options => options.AllowAnyOrigin());
 
 // Configure the HTTP request pipeline.
