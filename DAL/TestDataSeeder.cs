@@ -1,4 +1,6 @@
 ﻿using DAL.DbObjects;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,20 @@ namespace DAL
 {
     internal class TestDataSeeder
     {
+        public static void Initialize(IServiceProvider serviceProvider)
+        {
+            using (var context = new ShopContext(serviceProvider.GetRequiredService<DbContextOptions<ShopContext>>()))
+            {
+                if (context.Products.Any())
+                {
+                    return;
+                }
+
+                context.Products.AddRange(GetProducts());
+                context.SaveChanges();
+            }
+        }
+
         public static List<DbProduct> GetProducts()
         {
             return new List<DbProduct>()
