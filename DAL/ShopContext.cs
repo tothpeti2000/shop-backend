@@ -12,7 +12,7 @@ namespace DAL
     {
         public DbSet<DbProduct> Products { get; set; }
         public DbSet<DbCategory> Categories { get; set; }
-        public DbSet<DbReview> Reviews { get; set; }
+        //public DbSet<DbReview> Reviews { get; set; }
 
         public ShopContext(DbContextOptions<ShopContext> options): base(options) { }
 
