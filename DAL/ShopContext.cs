@@ -14,7 +14,7 @@ namespace DAL
         public DbSet<DbCategory> Categories { get; set; }
         public DbSet<DbReview> Reviews { get; set; }
 
-        public ShopContext(DbContextOptions options): base(options) { }
+        public ShopContext(DbContextOptions<ShopContext> options): base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
