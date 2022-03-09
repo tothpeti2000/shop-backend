@@ -27,6 +27,9 @@ namespace DAL
             modelBuilder.Entity<DbProduct>()
                 .HasOne(p => p.Category);
 
+            modelBuilder.Entity<DbCategory>()
+                .ToTable("Category");
+
             /*modelBuilder.Entity<DbProduct>()
                 .HasMany(p => p.Reviews);*/
 
