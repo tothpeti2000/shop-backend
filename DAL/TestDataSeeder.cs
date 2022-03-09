@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    internal class TestDataSeeder
+    public class TestDataSeeder
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
