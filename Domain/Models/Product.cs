@@ -8,14 +8,13 @@ namespace Domain.Models
 {
     public class Product
     {
-        public Product(int Id, string name, double price, int stock, string category, List<int> reviewIDs)
+        public Product(int Id, string name, double price, int stock, string category)
         {
             this.ID = Id;
             this.Name = name;
             this.Price = price;
             this.Stock = stock;
             this.Category = category;
-            this.ReviewIDs = reviewIDs;
         }
 
         public int ID { get; set; }
