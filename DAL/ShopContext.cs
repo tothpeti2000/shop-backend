@@ -18,9 +18,6 @@ namespace DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var products = TestDataSeeder.GetProducts();
-            var categories = TestDataSeeder.GetCategories();
-
             modelBuilder.Entity<DbProduct>()
                 .ToTable("Product");
 
