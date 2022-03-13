@@ -10,6 +10,7 @@ namespace DAL.DbObjects
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public string? ImgURL { get; set; }
 
         public int? ParentCategoryID { get; set; }
         public DbCategory? ParentCategory { get; set; }
