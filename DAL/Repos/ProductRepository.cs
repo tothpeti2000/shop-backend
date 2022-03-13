@@ -38,6 +38,11 @@ namespace DAL.Repos
             return ToModel(dbProduct);
         }
 
+        public double GetMaxPrice()
+        {
+            return db.Products.Max(p => p.Price);
+        }
+
         public bool AddToCart(int ID)
         {
             throw new NotImplementedException();
