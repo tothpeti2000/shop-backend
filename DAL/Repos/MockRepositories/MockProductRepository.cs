@@ -39,5 +39,10 @@ namespace DAL.Repos
         {
             throw new NotImplementedException();
         }
+
+        public double GetMaxPrice()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

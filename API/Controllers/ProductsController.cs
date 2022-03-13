@@ -21,6 +21,7 @@ namespace API.Controllers
             return repository.GetAllProducts();
         }
 
+        [HttpGet("maxprice")]
         public ActionResult<double> GetMaxPrice()
         {
             return repository.GetMaxPrice();
