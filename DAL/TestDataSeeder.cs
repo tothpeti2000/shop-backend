@@ -15,9 +15,14 @@ namespace DAL
         {
             using (var context = new ShopContext(serviceProvider.GetRequiredService<DbContextOptions<ShopContext>>()))
             {
-                if (!context.Categories.Any() && !context.Products.Any())
+                if (!context.Categories.Any())
                 {
                     context.Categories.AddRange(GetCategories());
+                    context.SaveChanges();
+                }
+
+                if (!context.Products.Any())
+                {
                     context.Products.AddRange(GetProducts());
                     context.SaveChanges();
                 }
