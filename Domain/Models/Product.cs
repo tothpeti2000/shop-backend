@@ -22,6 +22,7 @@ namespace Domain.Models
         public double Price { get; set; }
         public int Stock { get; set; }
         public string Category { get; set; }
+        public List<int>? ReviewIDs { get; set; }
 
     }
 }
