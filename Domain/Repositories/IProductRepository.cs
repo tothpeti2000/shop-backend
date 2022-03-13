@@ -11,6 +11,7 @@ namespace Domain.Repositories
     {
         public List<Product> GetAllProducts();
         public Product GetByID(int ID);
+        public double GetMaxPrice();
         public bool AddToCart(int ID);
     }
 }
