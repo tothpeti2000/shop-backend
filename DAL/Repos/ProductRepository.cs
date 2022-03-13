@@ -1,6 +1,7 @@
 ﻿using DAL.DbObjects;
 using Domain.Models;
 using Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace DAL.Repos
         public List<Product> GetAllProducts()
         {
             return db.Products
+                .Include(p => p.Category)
                 .Select(ToModel)
                 .ToList();
         }
