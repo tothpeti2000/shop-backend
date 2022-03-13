@@ -15,13 +15,12 @@ namespace DAL
         {
             using (var context = new ShopContext(serviceProvider.GetRequiredService<DbContextOptions<ShopContext>>()))
             {
-                if (context.Products.Any())
+                if (!context.Categories.Any() && !context.Products.Any())
                 {
-                    return;
+                    context.Categories.AddRange(GetCategories());
+                    context.Products.AddRange(GetProducts());
+                    context.SaveChanges();
                 }
-
-                context.Products.AddRange(GetProducts());
-                context.SaveChanges();
             }
         }
 
@@ -31,7 +30,6 @@ namespace DAL
             {
                 new DbProduct
                 {
-                    ID = 1,
                     Name = "Product1",
                     Price = 1000,
                     Stock = 10,
@@ -41,7 +39,6 @@ namespace DAL
                 },
                 new DbProduct
                 {
-                    ID = 2,
                     Name = "Product2",
                     Price = 1000,
                     Stock = 0,
@@ -50,14 +47,13 @@ namespace DAL
                 },
                 new DbProduct
                 {
-                    ID = 3,
                     Name = "Product3",
                     Price = 1000,
                     Stock = 10,
                     AverageRating = 5,
                     CategoryID = 1,
                     //ReviewIDs = new List<int> { 1, 2, 3 }
-                },
+                }/*,
                 new DbProduct
                 {
                     ID = 4,
@@ -121,7 +117,7 @@ namespace DAL
                     Stock = 10,
                     AverageRating = 5,
                     CategoryID = 1
-                },
+                },*/
             };
         }
 
@@ -131,24 +127,20 @@ namespace DAL
             {
                 new DbCategory
                 {
-                    ID = 1,
                     Name = "Construction toys"
                 },
                 new DbCategory
                 {
-                    ID = 2,
                     Name = "Building blocks",
                     ParentCategoryID = 1
                 },
                 new DbCategory
                 {
-                    ID = 3,
                     Name = "LEGO",
                     ParentCategoryID = 1
                 },
                 new DbCategory
                 {
-                    ID = 4,
                     Name = "F1 LEGO",
                     ParentCategoryID = 3
                 }

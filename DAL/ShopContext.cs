@@ -29,10 +29,6 @@ namespace DAL
 
             /*modelBuilder.Entity<DbProduct>()
                 .HasMany(p => p.Reviews);*/
-
-            /*modelBuilder.Entity<DbProduct>()
-                .HasData(products);*/
-
         }
     }
 }
