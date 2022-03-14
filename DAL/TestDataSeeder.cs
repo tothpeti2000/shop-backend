@@ -27,11 +27,11 @@ namespace DAL
                     context.SaveChanges();
                 }
 
-                if(!context.Reviews.Any())
+                /*if(!context.Reviews.Any())
                 {
                     context.Reviews.AddRange(GetReviews());
                     context.SaveChanges();
-                }
+                }*/
             }
         }
 
