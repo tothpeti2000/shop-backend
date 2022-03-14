@@ -17,5 +17,6 @@ namespace DAL.DbObjects
         public AspNetUser User { get; set; }
 
         public int ProductID { get; set; }
+        public DbProduct Product { get; set; }
     }
 }
