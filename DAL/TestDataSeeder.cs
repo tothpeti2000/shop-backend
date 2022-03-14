@@ -26,6 +26,12 @@ namespace DAL
                     context.Products.AddRange(GetProducts());
                     context.SaveChanges();
                 }
+
+                if(!context.Reviews.Any())
+                {
+                    context.Reviews.AddRange(GetReviews());
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -35,94 +41,102 @@ namespace DAL
             {
                 new DbProduct
                 {
-                    Name = "Product1",
-                    Price = 1000,
-                    Stock = 10,
-                    AverageRating = 5,
-                    CategoryID = 1,
-                    //ReviewIDs = new List<int> { 1, 2 },
-                },
-                new DbProduct
-                {
-                    Name = "Product2",
-                    Price = 1000,
-                    Stock = 0,
-                    AverageRating = 2.5,
-                    CategoryID = 2
-                },
-                new DbProduct
-                {
-                    Name = "Product3",
-                    Price = 1000,
-                    Stock = 10,
-                    AverageRating = 5,
-                    CategoryID = 1,
-                    //ReviewIDs = new List<int> { 1, 2, 3 }
-                }/*,
-                new DbProduct
-                {
-                    ID = 4,
-                    Name = "Product4",
-                    Price = 1000,
-                    Stock = 10,
-                    AverageRating = 5,
-                    CategoryID = 3
-                },
-                new DbProduct
-                {
-                    ID = 5,
-                    Name = "Product5",
-                    Price = 1000,
-                    Stock = 10,
-                    AverageRating = 5,
-                    CategoryID = 4
-                },
-                new DbProduct
-                {
-                    ID = 6,
-                    Name = "Product6",
-                    Price = 1000,
-                    Stock = 10,
+                    Name = "Activity playgim",
+                    Price = 7488,
+                    Stock = 21,
                     AverageRating = 5,
                     CategoryID = 1
                 },
                 new DbProduct
                 {
-                    ID = 7,
-                    Name = "Product7",
-                    Price = 1000,
-                    Stock = 10,
+                    Name = "Activity playgim",
+                    Price = 7488,
+                    Stock = 21,
+                    Description = "",
                     AverageRating = 5,
-                    CategoryID = 1,
-                },
-                new DbProduct
-                {
-                    ID = 8,
-                    Name = "Product8",
-                    Price = 1000,
-                    Stock = 10,
-                    AverageRating = 5,
+                    ImgURL = "",
                     CategoryID = 1
                 },
                 new DbProduct
                 {
-                    ID = 9,
-                    Name = "Product9",
-                    Price = 1000,
-                    Stock = 0,
+                    Name = "Activity playgim",
+                    Price = 7488,
+                    Stock = 21,
+                    Description = "",
                     AverageRating = 5,
-                    CategoryID = 1,
-                    //ReviewIDs = new List<int> { 1, 2 }
+                    ImgURL = "",
+                    CategoryID = 1
                 },
                 new DbProduct
                 {
-                    ID = 10,
-                    Name = "Product10",
-                    Price = 1000,
-                    Stock = 10,
+                    Name = "Activity playgim",
+                    Price = 7488,
+                    Stock = 21,
+                    Description = "",
                     AverageRating = 5,
+                    ImgURL = "",
                     CategoryID = 1
-                },*/
+                },
+                new DbProduct
+                {
+                    Name = "Activity playgim",
+                    Price = 7488,
+                    Stock = 21,
+                    Description = "",
+                    AverageRating = 5,
+                    ImgURL = "",
+                    CategoryID = 1
+                },
+                new DbProduct
+                {
+                    Name = "Activity playgim",
+                    Price = 7488,
+                    Stock = 21,
+                    Description = "",
+                    AverageRating = 5,
+                    ImgURL = "",
+                    CategoryID = 1
+                },
+                new DbProduct
+                {
+                    Name = "Activity playgim",
+                    Price = 7488,
+                    Stock = 21,
+                    Description = "",
+                    AverageRating = 5,
+                    ImgURL = "",
+                    CategoryID = 1
+                },
+                new DbProduct
+                {
+                    Name = "Activity playgim",
+                    Price = 7488,
+                    Stock = 21,
+                    Description = "",
+                    AverageRating = 5,
+                    ImgURL = "",
+                    CategoryID = 1
+                },
+                new DbProduct
+                {
+                    Name = "Activity playgim",
+                    Price = 7488,
+                    Stock = 21,
+                    Description = "",
+                    AverageRating = 5,
+                    ImgURL = "",
+                    CategoryID = 1
+                },
+                new DbProduct
+                {
+                    Name = "Activity playgim",
+                    Price = 7488,
+                    Stock = 21,
+                    Description = "",
+                    AverageRating = 5,
+                    ImgURL = "",
+                    CategoryID = 1
+                }
             };
         }
 
@@ -132,23 +146,110 @@ namespace DAL
             {
                 new DbCategory
                 {
-                    Name = "Construction toys"
+                    Name = "Toy"
                 },
                 new DbCategory
                 {
-                    Name = "Building blocks",
+                    Name = "Play house"
+                },
+                new DbCategory
+                {
+                    Name = "Baby toy",
                     ParentCategoryID = 1
+                },
+                new DbCategory
+                {
+                    Name = "Construction toy",
+                    ParentCategoryID = 1
+                },
+                new DbCategory
+                {
+                    Name = "Wooden toy",
+                    ParentCategoryID = 1
+                },
+                new DbCategory
+                {
+                    Name = "Plush figure",
+                    ParentCategoryID = 1
+                },
+                new DbCategory
+                {
+                    Name = "Bicycles",
+                    ParentCategoryID = 1
+                },
+                new DbCategory
+                {
+                    Name = "Months 0-6",
+                    ParentCategoryID = 3
+                },
+                new DbCategory
+                {
+                    Name = "Months 6-18",
+                    ParentCategoryID = 3
+                },
+                new DbCategory
+                {
+                    Name = "Months 18-24",
+                    ParentCategoryID = 3
+                },
+                new DbCategory
+                {
+                    Name = "DUPLO",
+                    ParentCategoryID = 4
                 },
                 new DbCategory
                 {
                     Name = "LEGO",
-                    ParentCategoryID = 1
+                    ParentCategoryID = 4
                 },
                 new DbCategory
                 {
-                    Name = "F1 LEGO",
-                    ParentCategoryID = 3
+                    Name = "Building items",
+                    ParentCategoryID = 4
+                },
+                new DbCategory
+                {
+                    Name = "Building blocks",
+                    ParentCategoryID = 5
+                },
+                new DbCategory
+                {
+                    Name = "Toys for skill development",
+                    ParentCategoryID = 5
+                },
+                new DbCategory
+                {
+                    Name = "Logic toys",
+                    ParentCategoryID = 5
+                },
+                new DbCategory
+                {
+                    Name = "Craftwork toys",
+                    ParentCategoryID = 5
+                },
+                new DbCategory
+                {
+                    Name = "Baby taxis",
+                    ParentCategoryID = 7
+                },
+                new DbCategory
+                {
+                    Name = "Motors",
+                    ParentCategoryID = 7
+                },
+                new DbCategory
+                {
+                    Name = "Tricycle",
+                    ParentCategoryID = 7
                 }
+            };
+        }
+
+        public static List<DbReview> GetReviews()
+        {
+            return new List<DbReview>()
+            {
+
             };
         }
     }
