@@ -1,6 +1,7 @@
 ﻿using DAL.DbObjects;
 using Domain.Models.CategoryDTOs;
 using Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +22,14 @@ namespace DAL.Repos
         public List<Category> GetAllCategories()
         {
             return db.Categories
+                .Include(c => c.ParentCategory)
                 .Select(ToModel)
                 .ToList();
         }
 
         private Category ToModel(DbCategory dbCategory)
         {
-            return new Category(dbCategory.ID, dbCategory.Name, dbCategory.ParentCategory.Name);
+            return new Category(dbCategory.ID, dbCategory.Name, dbCategory.ParentCategory?.Name ?? "");
         }
     }
 }
