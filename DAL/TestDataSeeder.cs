@@ -44,6 +44,7 @@ namespace DAL
                     Name = "Activity playgim",
                     Price = 7488,
                     Stock = 21,
+                    Description = "Description",
                     AverageRating = 5,
                     CategoryID = 8
                 },
@@ -52,6 +53,7 @@ namespace DAL
                     Name = "Colorful baby book",
                     Price = 1738,
                     Stock = 58,
+                    Description = "Description",
                     AverageRating = 5,
                     CategoryID = 8
                 },
@@ -60,6 +62,7 @@ namespace DAL
                     Name = "Baby telephone",
                     Price = 3725,
                     Stock = 18,
+                    Description = "Description",
                     AverageRating = 5,
                     CategoryID = 9
                 },
@@ -68,6 +71,7 @@ namespace DAL
                     Name = "Fisher Price hammer toy",
                     Price = 8356,
                     Stock = 58,
+                    Description= "Description",
                     AverageRating = 5,
                     CategoryID = 10
                 },
@@ -76,6 +80,7 @@ namespace DAL
                     Name = "Mega Bloks 24 pcs",
                     Price = 4325,
                     Stock = 47,
+                    Description = "Description", 
                     AverageRating = 5,
                     CategoryID = 14
                 },
@@ -84,6 +89,7 @@ namespace DAL
                     Name = "Maxi Blocks 56 pcs",
                     Price = 1854,
                     Stock = 36,
+                    Description = "Description", 
                     AverageRating = 5,
                     CategoryID = 14
                 },
@@ -92,6 +98,7 @@ namespace DAL
                     Name = "Building Blocks 80 pcs",
                     Price = 4362,
                     Stock = 25,
+                    Description = "Description",
                     AverageRating = 5,
                     CategoryID = 14
                 },
