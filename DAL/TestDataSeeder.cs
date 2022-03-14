@@ -45,97 +45,82 @@ namespace DAL
                     Price = 7488,
                     Stock = 21,
                     AverageRating = 5,
-                    CategoryID = 1
+                    CategoryID = 8
                 },
                 new DbProduct
                 {
-                    Name = "Activity playgim",
-                    Price = 7488,
-                    Stock = 21,
-                    Description = "",
+                    Name = "Colorful baby book",
+                    Price = 1738,
+                    Stock = 58,
                     AverageRating = 5,
-                    ImgURL = "",
-                    CategoryID = 1
+                    CategoryID = 8
                 },
                 new DbProduct
                 {
-                    Name = "Activity playgim",
-                    Price = 7488,
-                    Stock = 21,
-                    Description = "",
+                    Name = "Baby telephone",
+                    Price = 3725,
+                    Stock = 18,
                     AverageRating = 5,
-                    ImgURL = "",
-                    CategoryID = 1
+                    CategoryID = 9
                 },
                 new DbProduct
                 {
-                    Name = "Activity playgim",
-                    Price = 7488,
-                    Stock = 21,
-                    Description = "",
+                    Name = "Fisher Price hammer toy",
+                    Price = 8356,
+                    Stock = 58,
                     AverageRating = 5,
-                    ImgURL = "",
-                    CategoryID = 1
+                    CategoryID = 10
                 },
                 new DbProduct
                 {
-                    Name = "Activity playgim",
-                    Price = 7488,
-                    Stock = 21,
-                    Description = "",
+                    Name = "Mega Bloks 24 pcs",
+                    Price = 4325,
+                    Stock = 47,
                     AverageRating = 5,
-                    ImgURL = "",
-                    CategoryID = 1
+                    CategoryID = 14
                 },
                 new DbProduct
                 {
-                    Name = "Activity playgim",
-                    Price = 7488,
-                    Stock = 21,
-                    Description = "",
+                    Name = "Maxi Blocks 56 pcs",
+                    Price = 1854,
+                    Stock = 36,
                     AverageRating = 5,
-                    ImgURL = "",
-                    CategoryID = 1
+                    CategoryID = 14
                 },
                 new DbProduct
                 {
-                    Name = "Activity playgim",
-                    Price = 7488,
-                    Stock = 21,
-                    Description = "",
+                    Name = "Building Blocks 80 pcs",
+                    Price = 4362,
+                    Stock = 25,
                     AverageRating = 5,
-                    ImgURL = "",
-                    CategoryID = 1
+                    CategoryID = 14
                 },
                 new DbProduct
                 {
-                    Name = "Activity playgim",
-                    Price = 7488,
-                    Stock = 21,
-                    Description = "",
+                    Name = "Lego City harbour",
+                    Price = 27563,
+                    Stock = 12,
+                    Description = "Description for LEGO City Harbour",
                     AverageRating = 5,
-                    ImgURL = "",
-                    CategoryID = 1
+                    CategoryID = 13
                 },
                 new DbProduct
                 {
-                    Name = "Activity playgim",
-                    Price = 7488,
-                    Stock = 21,
-                    Description = "",
+                    Name = "Lego Duplo Excavator",
+                    Price = 6399,
+                    Stock = 26,
+                    Description = "Description for LEGO Duplo Excavator",
                     AverageRating = 5,
-                    ImgURL = "",
-                    CategoryID = 1
+                    CategoryID = 11
                 },
                 new DbProduct
                 {
-                    Name = "Activity playgim",
-                    Price = 7488,
-                    Stock = 21,
-                    Description = "",
+                    Name = "Child supervision for 1 hour",
+                    Price = 800,
+                    Stock = 0,
+                    Description = "Description",
                     AverageRating = 5,
-                    ImgURL = "",
-                    CategoryID = 1
+                    CategoryID = 2
                 }
             };
         }
