@@ -1,5 +1,5 @@
 ﻿using DAL.DbObjects;
-using Domain.Models;
+using Domain.Models.CategoryDTOs;
 using Domain.Repositories;
 using System;
 using System.Collections.Generic;

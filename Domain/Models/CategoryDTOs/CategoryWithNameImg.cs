@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models.Category
+namespace Domain.Models.CategoryDTOs
 {
     public class CategoryWithNameImg
     {

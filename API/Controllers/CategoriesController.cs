@@ -1,4 +1,4 @@
-﻿using Domain.Models;
+﻿using Domain.Models.CategoryDTOs;
 using Domain.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
