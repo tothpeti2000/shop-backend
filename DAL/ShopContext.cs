@@ -1,4 +1,6 @@
 ﻿using DAL.DbObjects;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class ShopContext: DbContext
+    public class ShopContext: IdentityDbContext<IdentityUser>
     {
         public DbSet<DbProduct> Products { get; set; }
         public DbSet<DbCategory> Categories { get; set; }
