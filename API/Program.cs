@@ -1,6 +1,7 @@
 using DAL;
 using DAL.Repos;
 using DAL.Repos.MockRepositories;
+using Domain.Profiles;
 using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddAutoMapper(typeof(ProductProfile));
 
 var app = builder.Build();
 

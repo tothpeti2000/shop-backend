@@ -1,4 +1,5 @@
-﻿using Domain.Models.ProductDTOs;
+﻿using AutoMapper;
+using Domain.Models.ProductDTOs;
 using Domain.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,12 @@ namespace API.Controllers
     public class ProductsController : ControllerBase
     {
         private IProductRepository repository;
+        private readonly IMapper mapper;
 
-        public ProductsController(IProductRepository repository)
+        public ProductsController(IProductRepository repository, IMapper mapper)
         {
             this.repository = repository;
+            this.mapper = mapper;
         }
 
         public ActionResult<List<Product>> GetAllProducts()
@@ -24,7 +27,11 @@ namespace API.Controllers
         [HttpGet("{ID}")]
         public ActionResult<ProductDetails> GetProductDetails(int ID)
         {
-            return repository.GetProductDetails(ID);
+            var product = repository.GetByID(ID);
+            var productDetails = mapper.Map<Product, ProductDetails>(product);
+
+            return productDetails;
+
         }
 
         [HttpGet("maxprice")]

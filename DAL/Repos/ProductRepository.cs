@@ -27,15 +27,11 @@ namespace DAL.Repos
                 .ToList();
         }
 
-        public Product GetByID(int ID)
+        public Product? GetByID(int ID)
         {
             var dbProduct = db.Products
+                .Include(p => p.Category)
                 .FirstOrDefault(p => p.ID == ID);
-
-            if (dbProduct == null)
-            {
-                return null;
-            }
 
             return ToModel(dbProduct);
         }
