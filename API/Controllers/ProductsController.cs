@@ -28,6 +28,12 @@ namespace API.Controllers
         public ActionResult<ProductDetails> GetProductDetails(int ID)
         {
             var product = repository.GetByID(ID);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
             var productDetails = mapper.Map<Product, ProductDetails>(product);
 
             return productDetails;

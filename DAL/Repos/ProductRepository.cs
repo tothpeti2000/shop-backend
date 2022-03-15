@@ -33,7 +33,7 @@ namespace DAL.Repos
                 .Include(p => p.Category)
                 .FirstOrDefault(p => p.ID == ID);
 
-            return ToModel(dbProduct);
+            return dbProduct == null ? null : ToModel(dbProduct);
         }
 
         public ProductDetails GetProductDetails(int ID)
