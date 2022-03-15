@@ -24,7 +24,6 @@ namespace DAL.Repos
             var config = new MapperConfiguration(config =>
             {
                 config.AddProfile<MappingProfile>();
-                config.CreateMap<DbProduct, Product>();
             });
 
             mapper = config.CreateMapper();
@@ -49,17 +48,9 @@ namespace DAL.Repos
 
         public ProductDetails GetProductDetails(int ID)
         {
-            /*var dbProduct = db.Products
-                .FirstOrDefault(p => p.ID == ID);
+            var product = GetByID(ID);
 
-            if (dbProduct == null)
-            {
-                return null;
-            }
-
-            return ToProductDetails(dbProduct);*/
-
-            return null;
+            return mapper.Map<Product, ProductDetails>(product);
         }
 
         public double GetMaxPrice()
@@ -71,20 +62,5 @@ namespace DAL.Repos
         {
             throw new NotImplementedException();
         }
-
-        private Product? ToModel(DbProduct? dbProduct)
-        {
-            if (dbProduct == null)
-            {
-                return null;
-            }
-
-            return new Product(dbProduct.ID, dbProduct.Name, dbProduct.Price, dbProduct.Stock, dbProduct.Description, dbProduct.AverageRating, dbProduct.ImgURL);
-        }
-
-        /*private ProductDetails ToProductDetails(DbProduct dbProduct)
-        {
-            return new ProductDetails(dbProduct.ID, dbProduct.Name, dbProduct.Price, dbProduct.Stock, dbProduct.Description, dbProduct.AverageRating, dbProduct.ImgURL);
-        }*/
     }
 }
