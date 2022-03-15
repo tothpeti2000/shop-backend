@@ -22,6 +22,12 @@ namespace API.Controllers
             return repository.GetAllProducts();
         }
 
+        [HttpGet("list")]
+        public ActionResult<List<ProductListItem>> GetProductList()
+        {
+            return repository.GetProductList();
+        }
+
         [HttpGet("{ID}")]
         public ActionResult<ProductDetails> GetProductDetails(int ID)
         {
