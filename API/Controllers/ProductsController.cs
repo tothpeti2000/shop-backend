@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Domain.Models;
 using Domain.Models.ProductDTOs;
 using Domain.Repositories;
 using Microsoft.AspNetCore.Http;

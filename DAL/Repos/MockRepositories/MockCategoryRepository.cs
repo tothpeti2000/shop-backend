@@ -1,4 +1,4 @@
-﻿using Domain.Models.CategoryDTOs;
+﻿using Domain.Models;
 using Domain.Repositories;
 using System;
 using System.Collections.Generic;

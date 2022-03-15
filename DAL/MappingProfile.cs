@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DAL.DbObjects;
-using Domain.Models.CategoryDTOs;
+using Domain.Models;
 using Domain.Models.ProductDTOs;
 using System;
 using System.Collections.Generic;
