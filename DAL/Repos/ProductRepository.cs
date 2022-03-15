@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using DAL.DbObjects;
 using Domain.Models.ProductDTOs;
 using Domain.Profiles;
@@ -31,12 +32,11 @@ namespace DAL.Repos
 
         public List<Product> GetAllProducts()
         {
-            /*return db.Products
+            var dbProducts = db.Products
                 .Include(p => p.Category)
-                .Select(ToModel)
-                .ToList();*/
+                .ToList();
 
-            return null;
+            return mapper.Map<List<DbProduct>, List<Product>>(dbProducts);
         }
 
         public Product? GetByID(int ID)
