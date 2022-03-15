@@ -1,5 +1,7 @@
-﻿using DAL.DbObjects;
+﻿using AutoMapper;
+using DAL.DbObjects;
 using Domain.Models.ProductDTOs;
+using Domain.Profiles;
 using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,10 +15,19 @@ namespace DAL.Repos
     public class ProductRepository : IProductRepository
     {
         private readonly ShopContext db;
+        private readonly IMapper mapper;
 
         public ProductRepository(ShopContext db)
         {
             this.db = db;
+
+            var config = new MapperConfiguration(config =>
+            {
+                config.AddProfile<MappingProfile>();
+                config.CreateMap<DbProduct, Product>();
+            });
+
+            mapper = config.CreateMapper();
         }
 
         public List<Product> GetAllProducts()
@@ -33,7 +44,7 @@ namespace DAL.Repos
                 .Include(p => p.Category)
                 .FirstOrDefault(p => p.ID == ID);
 
-            return ToModel(dbProduct);
+            return mapper.Map<DbProduct, Product>(dbProduct);
         }
 
         public ProductDetails GetProductDetails(int ID)

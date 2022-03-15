@@ -11,12 +11,10 @@ namespace API.Controllers
     public class ProductsController : ControllerBase
     {
         private IProductRepository repository;
-        private readonly IMapper mapper;
 
-        public ProductsController(IProductRepository repository, IMapper mapper)
+        public ProductsController(IProductRepository repository)
         {
             this.repository = repository;
-            this.mapper = mapper;
         }
 
         public ActionResult<List<Product>> GetAllProducts()
@@ -27,14 +25,14 @@ namespace API.Controllers
         [HttpGet("{ID}")]
         public ActionResult<ProductDetails> GetProductDetails(int ID)
         {
-            var product = repository.GetByID(ID);
+            var productDetails = repository.GetProductDetails(ID);
 
-            if (product == null)
+            if (productDetails == null)
             {
                 return NotFound();
             }
 
-            return mapper.Map<Product, ProductDetails>(product);
+            return productDetails;
 
         }
 
