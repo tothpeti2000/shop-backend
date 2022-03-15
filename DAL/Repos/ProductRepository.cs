@@ -1,5 +1,5 @@
 ﻿using DAL.DbObjects;
-using Domain.Models;
+using Domain.Models.ProductDTOs;
 using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;

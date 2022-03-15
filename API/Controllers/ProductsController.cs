@@ -1,4 +1,4 @@
-﻿using Domain.Models;
+﻿using Domain.Models.ProductDTOs;
 using Domain.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +19,17 @@ namespace API.Controllers
         public ActionResult<List<Product>> GetAllProducts()
         {
             return repository.GetAllProducts();
+        }
+
+        [HttpGet("{ID}")]
+        public ActionResult<ProductDetails> GetProductDetails(int ID)
+        {
+            var dbProduct = repository.GetByID(ID);
+
+            if (dbProduct == null)
+            {
+                return null;
+            }
         }
 
         [HttpGet("maxprice")]

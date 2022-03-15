@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models
+namespace Domain.Models.ProductDTOs
 {
     public class Product
     {
         public Product(int Id, string name, double price, int stock, string category)
         {
-            this.ID = Id;
-            this.Name = name;
-            this.Price = price;
-            this.Stock = stock;
-            this.Category = category;
+            ID = Id;
+            Name = name;
+            Price = price;
+            Stock = stock;
+            Category = category;
         }
 
         public int ID { get; set; }
