@@ -48,7 +48,7 @@ namespace DAL.Repos
             return mapper.Map<DbProduct, Product>(dbProduct);
         }
 
-        public ProductDetails GetProductDetails(int ID)
+        public ProductDetails? GetProductDetails(int ID)
         {
             var product = GetByID(ID);
 
