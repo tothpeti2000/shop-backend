@@ -44,5 +44,10 @@ namespace DAL.Repos
         {
             throw new NotImplementedException();
         }
+
+        public ProductDetails GetProductDetails(int ID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -40,6 +40,19 @@ namespace DAL.Repos
             return ToModel(dbProduct);
         }
 
+        public ProductDetails GetProductDetails(int ID)
+        {
+            var dbProduct = db.Products
+                .FirstOrDefault(p => p.ID == ID);
+
+            if (dbProduct == null)
+            {
+                return null;
+            }
+
+            return ToProductDetails(dbProduct);
+        }
+
         public double GetMaxPrice()
         {
             return db.Products.Max(p => p.Price);
@@ -53,6 +66,11 @@ namespace DAL.Repos
         private Product ToModel(DbProduct dbProduct)
         {
             return new Product(dbProduct.ID, dbProduct.Name, dbProduct.Price, dbProduct.Stock, dbProduct.Category.Name);
+        }
+
+        private ProductDetails ToProductDetails(DbProduct dbProduct)
+        {
+            return new ProductDetails(dbProduct.ID, dbProduct.Name, dbProduct.Price, dbProduct.Stock, dbProduct.Description, dbProduct.AverageRating, dbProduct.ImgURL);
         }
     }
 }

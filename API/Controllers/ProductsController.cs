@@ -24,12 +24,7 @@ namespace API.Controllers
         [HttpGet("{ID}")]
         public ActionResult<ProductDetails> GetProductDetails(int ID)
         {
-            var dbProduct = repository.GetByID(ID);
-
-            if (dbProduct == null)
-            {
-                return null;
-            }
+            return repository.GetProductDetails(ID);
         }
 
         [HttpGet("maxprice")]
