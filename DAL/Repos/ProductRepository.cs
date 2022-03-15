@@ -31,10 +31,12 @@ namespace DAL.Repos
 
         public List<Product> GetAllProducts()
         {
-            return db.Products
+            /*return db.Products
                 .Include(p => p.Category)
                 .Select(ToModel)
-                .ToList();
+                .ToList();*/
+
+            return null;
         }
 
         public Product? GetByID(int ID)

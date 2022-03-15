@@ -18,7 +18,6 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddAutoMapper(typeof(ProductProfile));
 
 var app = builder.Build();
 
