@@ -15,18 +15,5 @@ namespace Domain.Models.ProductDTOs
         public string Description { get; set; }
         public double AverageRating { get; set; }
         public string? ImgURL { get; set; }
-
-        public ProductDetails() { }
-
-        public ProductDetails(int Id, string name, double price, int stock, string description, double averageRating, string? imgURL)
-        {
-            ID = Id;
-            Name = name;
-            Price = price;
-            Stock = stock;
-            Description = description;
-            AverageRating = averageRating;
-            ImgURL = imgURL;
-        }
     }
 }

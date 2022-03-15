@@ -34,9 +34,7 @@ namespace API.Controllers
                 return NotFound();
             }
 
-            var productDetails = mapper.Map<Product, ProductDetails>(product);
-
-            return productDetails;
+            return mapper.Map<Product, ProductDetails>(product);
 
         }
 

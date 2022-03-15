@@ -33,12 +33,12 @@ namespace DAL.Repos
                 .Include(p => p.Category)
                 .FirstOrDefault(p => p.ID == ID);
 
-            return dbProduct == null ? null : ToModel(dbProduct);
+            return ToModel(dbProduct);
         }
 
         public ProductDetails GetProductDetails(int ID)
         {
-            var dbProduct = db.Products
+            /*var dbProduct = db.Products
                 .FirstOrDefault(p => p.ID == ID);
 
             if (dbProduct == null)
@@ -46,7 +46,9 @@ namespace DAL.Repos
                 return null;
             }
 
-            return ToProductDetails(dbProduct);
+            return ToProductDetails(dbProduct);*/
+
+            return null;
         }
 
         public double GetMaxPrice()
@@ -59,14 +61,19 @@ namespace DAL.Repos
             throw new NotImplementedException();
         }
 
-        private Product ToModel(DbProduct dbProduct)
+        private Product? ToModel(DbProduct? dbProduct)
         {
-            return new Product(dbProduct.ID, dbProduct.Name, dbProduct.Price, dbProduct.Stock, dbProduct.Category.Name);
+            if (dbProduct == null)
+            {
+                return null;
+            }
+
+            return new Product(dbProduct.ID, dbProduct.Name, dbProduct.Price, dbProduct.Stock, dbProduct.Description, dbProduct.AverageRating, dbProduct.ImgURL);
         }
 
-        private ProductDetails ToProductDetails(DbProduct dbProduct)
+        /*private ProductDetails ToProductDetails(DbProduct dbProduct)
         {
             return new ProductDetails(dbProduct.ID, dbProduct.Name, dbProduct.Price, dbProduct.Stock, dbProduct.Description, dbProduct.AverageRating, dbProduct.ImgURL);
-        }
+        }*/
     }
 }

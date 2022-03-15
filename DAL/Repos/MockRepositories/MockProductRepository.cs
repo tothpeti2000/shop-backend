@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    public class MockProductRepository : IProductRepository
+    /*public class MockProductRepository : IProductRepository
     {
         private List<Product> products = new List<Product>()
         {
@@ -49,5 +49,5 @@ namespace DAL.Repos
         {
             throw new NotImplementedException();
         }
-    }
+    }*/
 }
