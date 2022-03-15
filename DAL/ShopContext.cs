@@ -20,6 +20,8 @@ namespace DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             ConfigureProducts(modelBuilder);
             ConfigureCategories(modelBuilder);
             ConfigureReviews(modelBuilder);
