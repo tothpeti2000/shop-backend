@@ -19,22 +19,21 @@ namespace Domain.Services
 
         public List<ProductListItem> GetProductList()
         {
-            return repository.GetProductList();
-        }
+            var dbProducts = repository.GetAllProducts();
 
-        public List<ProductListItem> GetProductsByName(string name)
-        {
-            return repository.GetProductsByName(name);
+            return mapper.Map<List<DbProduct>, List<ProductListItem>>(dbProducts);
         }
 
         public ProductDetails? GetProductDetails(int ID)
         {
-            return repository.GetProductDetails(ID);
+            var product = GetByID(ID);
+
+            return mapper.Map<Product, ProductDetails>(product);
         }
 
         public double GetMaxPrice()
         {
-            return repository.GetMaxPrice();
+            return db.Products.Max(p => p.Price);
         }
     }
 }
