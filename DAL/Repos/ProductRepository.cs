@@ -14,21 +14,13 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository : BaseRepository, IProductRepository
     {
-        private readonly ShopContext db;
-        private readonly IMapper mapper;
+        public ProductRepository(ShopContext db): base(db){ }
 
-        public ProductRepository(ShopContext db)
+        public override void AddProfiles(IMapperConfigurationExpression config)
         {
-            this.db = db;
-
-            var config = new MapperConfiguration(config =>
-            {
-                config.AddProfile<MappingProfile>();
-            });
-
-            mapper = config.CreateMapper();
+            config.AddProfile<MappingProfile>();
         }
 
         public List<Product> GetAllProducts()

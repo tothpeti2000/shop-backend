@@ -1,4 +1,5 @@
-﻿using DAL.DbObjects;
+﻿using AutoMapper;
+using DAL.DbObjects;
 using Domain.Models;
 using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -10,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : BaseRepository, ICategoryRepository
     {
-        private readonly ShopContext db;
+        public CategoryRepository(ShopContext db): base(db) { }
 
-        public CategoryRepository(ShopContext db)
+        public override void AddProfiles(IMapperConfigurationExpression config)
         {
-            this.db = db;
+            throw new NotImplementedException();
         }
 
         public List<Category> GetAllCategories()

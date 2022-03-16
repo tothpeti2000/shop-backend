@@ -16,7 +16,6 @@ namespace DAL
         {
             CreateMap<DbProduct, Product>();
             CreateMap<Product, ProductDetails>();
-            CreateMap<DbCategory, Category>();
             CreateMap<Product, ProductListItem>();
         }
     }
