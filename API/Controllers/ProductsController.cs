@@ -11,19 +11,13 @@ namespace API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private IProductRepository repository;
+        private readonly IProductRepository repository;
 
         public ProductsController(IProductRepository repository)
         {
             this.repository = repository;
         }
 
-        public ActionResult<List<Product>> GetAllProducts()
-        {
-            return repository.GetAllProducts();
-        }
-
-        [HttpGet("list")]
         public ActionResult<List<ProductListItem>> GetProductList()
         {
             return repository.GetProductList();
