@@ -39,6 +39,16 @@ namespace DAL.Repos
             return mapper.Map<List<Product>, List<ProductListItem>>(products);
         }
 
+        public List<ProductListItem> GetProductsByName(string name)
+        {
+            var products = db.Products
+                .Include(p => p.Category)
+                .Where(p => p.Name.ToLower().Contains(name.ToLower()))
+                .ToList();
+
+            return mapper.Map<List<DbProduct>, List<ProductListItem>>(products);
+        }
+
         public Product? GetByID(int ID)
         {
             var dbProduct = db.Products
