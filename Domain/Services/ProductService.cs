@@ -1,4 +1,5 @@
-﻿using Domain.Repositories;
+﻿using Domain.Models.ProductDTOs;
+using Domain.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,26 @@ namespace Domain.Services
         public ProductService(IProductRepository repository)
         {
             this.repository = repository;
+        }
+
+        public List<ProductListItem> GetProductList()
+        {
+            return repository.GetProductList();
+        }
+
+        public List<ProductListItem> GetProductsByName(string name)
+        {
+            return repository.GetProductsByName(name);
+        }
+
+        public ProductDetails? GetProductDetails(int ID)
+        {
+            return repository.GetProductDetails(ID);
+        }
+
+        public double GetMaxPrice()
+        {
+            return repository.GetMaxPrice();
         }
     }
 }

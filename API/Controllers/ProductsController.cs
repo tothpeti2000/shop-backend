@@ -2,6 +2,7 @@
 using Domain.Models;
 using Domain.Models.ProductDTOs;
 using Domain.Repositories;
+using Domain.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,28 +12,28 @@ namespace API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductRepository repository;
+        private readonly ProductService productService;
 
-        public ProductsController(IProductRepository repository)
+        public ProductsController(ProductService productService)
         {
-            this.repository = repository;
+            this.productService = productService;
         }
 
         public ActionResult<List<ProductListItem>> GetProductList()
         {
-            return repository.GetProductList();
+            return productService.GetProductList();
         }
 
         [HttpGet("search")]
         public ActionResult<List<ProductListItem>> GetProductsFromQuery([FromQuery] string query)
         {
-            return repository.GetProductsByName(query);
+            return productService.GetProductsByName(query);
         }
 
         [HttpGet("{ID}")]
         public ActionResult<ProductDetails> GetProductDetails(int ID)
         {
-            var productDetails = repository.GetProductDetails(ID);
+            var productDetails = productService.GetProductDetails(ID);
 
             if (productDetails == null)
             {
@@ -46,7 +47,7 @@ namespace API.Controllers
         [HttpGet("maxprice")]
         public ActionResult<double> GetMaxPrice()
         {
-            return repository.GetMaxPrice();
+            return productService.GetMaxPrice();
         }
     }
 }
