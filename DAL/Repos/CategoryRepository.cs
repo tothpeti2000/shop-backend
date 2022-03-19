@@ -15,11 +15,6 @@ namespace DAL.Repos
     {
         public CategoryRepository(ShopContext db): base(db) { }
 
-        public override void AddProfiles(IMapperConfigurationExpression config)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Category> GetAllCategories()
         {
             return db.Categories

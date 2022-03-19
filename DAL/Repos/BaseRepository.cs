@@ -18,12 +18,10 @@ namespace DAL.Repos
 
             var config = new MapperConfiguration(config =>
             {
-                AddProfiles(config);
+                config.AddProfile<MappingProfile>();
             });
 
             mapper = config.CreateMapper();
         }
-
-        public abstract void AddProfiles(IMapperConfigurationExpression config);
     }
 }

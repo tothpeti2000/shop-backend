@@ -18,11 +18,6 @@ namespace DAL.Repos
     {
         public ProductRepository(ShopContext db): base(db){ }
 
-        public override void AddProfiles(IMapperConfigurationExpression config)
-        {
-            config.AddProfile<MappingProfile>();
-        }
-
         public List<Product> GetAllProducts()
         {
             var dbProducts = db.Products
