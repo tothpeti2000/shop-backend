@@ -1,7 +1,5 @@
 using DAL;
 using DAL.Repos;
-using DAL.Repos.MockRepositories;
-using Domain.Profiles;
 using Domain.Repositories;
 using Domain.Services;
 using Microsoft.EntityFrameworkCore;

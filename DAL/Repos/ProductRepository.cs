@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    // TODO: Check if BaseRepository is needed
     public class ProductRepository : BaseRepository, IProductRepository
     {
         public ProductRepository(ShopContext db): base(db){ }

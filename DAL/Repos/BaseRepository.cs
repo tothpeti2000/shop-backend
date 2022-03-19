@@ -12,7 +12,7 @@ namespace DAL.Repos
         protected readonly ShopContext db;
         protected readonly IMapper mapper;
 
-        public BaseRepository(ShopContext db)
+        protected BaseRepository(ShopContext db)
         {
             this.db = db;
 

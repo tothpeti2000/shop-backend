@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Models;
 using Domain.Models.ProductDTOs;
-using Domain.Profiles;
 using Domain.Repositories;
 using System;
 using System.Collections.Generic;
