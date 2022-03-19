@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Models;
 using Domain.Models.ProductDTOs;
+using Domain.Profiles;
 using Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,7 @@ namespace Domain.Services
 
             var config = new MapperConfiguration(config =>
             {
-                config.CreateMap<List<Product>, List<ProductListItem>>();
-                config.CreateMap<Product, ProductListItem>();
+                config.AddProfile<ProductProfile>();
             });
 
             mapper = config.CreateMapper();

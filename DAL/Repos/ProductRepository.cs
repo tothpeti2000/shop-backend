@@ -3,7 +3,6 @@ using AutoMapper.QueryableExtensions;
 using DAL.DbObjects;
 using Domain.Models;
 using Domain.Models.ProductDTOs;
-using Domain.Profiles;
 using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;

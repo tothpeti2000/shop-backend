@@ -14,6 +14,7 @@ namespace Domain.Profiles
         public ProductProfile()
         {
             CreateMap<Product, ProductDetails>();
+            CreateMap<Product, ProductListItem>();
         }
     }
 }
