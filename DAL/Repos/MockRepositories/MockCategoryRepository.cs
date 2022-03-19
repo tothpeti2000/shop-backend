@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos.MockRepositories
 {
-    public class MockCategoryRepository : ICategoryRepository
+    /*public class MockCategoryRepository : ICategoryRepository
     {
         private List<Category> categories = new List<Category>()
         {
@@ -23,7 +23,7 @@ namespace DAL.Repos.MockRepositories
             return categories;
         }
 
-        /*public Dictionary<string, List<string>> GetCategoryHierarchy()
+        public Dictionary<string, List<string>> GetCategoryHierarchy()
         {
             var hierarchy = new Dictionary<string, List<string>>();
 
@@ -37,6 +37,6 @@ namespace DAL.Repos.MockRepositories
             }
 
             return hierarchy;
-        }*/
-    }
+        }
+    }*/
 }
