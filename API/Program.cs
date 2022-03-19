@@ -18,6 +18,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ProductService, ProductService>();
+builder.Services.AddScoped<CategoryService, CategoryService>();
 
 var app = builder.Build();
 

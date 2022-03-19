@@ -1,5 +1,7 @@
 ﻿using Domain.Models;
+using Domain.Models.CategoryDTOs;
 using Domain.Repositories;
+using Domain.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,16 +11,16 @@ namespace API.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly ICategoryRepository repository;
+        private readonly CategoryService categoryService;
 
-        public CategoriesController(ICategoryRepository repository)
+        public CategoriesController(CategoryService categoryService)
         {
-            this.repository = repository;
+            this.categoryService = categoryService;
         }
 
-        public ActionResult<List<Category>> GetAllCategories()
+        public ActionResult<List<CategoryNode>> GetCategoryNodes()
         {
-            return repository.GetAllCategories();
+            return categoryService.GetCategoryNodes();
         }
     }
 }

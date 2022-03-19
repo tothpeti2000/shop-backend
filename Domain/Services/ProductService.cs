@@ -11,21 +11,13 @@ using System.Threading.Tasks;
 
 namespace Domain.Services
 {
-    public class ProductService
+    public class ProductService: BaseService
     {
         private readonly IProductRepository repository;
-        private readonly IMapper mapper;
 
-        public ProductService(IProductRepository repository)
+        public ProductService(IProductRepository repository): base()
         {
             this.repository = repository;
-
-            var config = new MapperConfiguration(config =>
-            {
-                config.AddProfile<ProductProfile>();
-            });
-
-            mapper = config.CreateMapper();
         }
 
         public List<ProductListItem> GetProductList()
