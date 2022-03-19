@@ -20,11 +20,5 @@ namespace API.Controllers
         {
             return repository.GetAllCategories();
         }
-
-        /*[Route("hierarchy")]
-        public ActionResult<Dictionary<string, List<string>>> GetHierarchy()
-        {
-            return repository.GetCategoryHierarchy();
-        }*/
     }
 }
