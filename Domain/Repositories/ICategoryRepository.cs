@@ -10,7 +10,5 @@ namespace Domain.Repositories
     public interface ICategoryRepository
     {
         public List<Category> GetAllCategories();
-
-        //public Dictionary<string, List<string>> GetCategoryHierarchy();
     }
 }
