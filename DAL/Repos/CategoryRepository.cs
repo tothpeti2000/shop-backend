@@ -17,15 +17,11 @@ namespace DAL.Repos
 
         public List<Category> GetAllCategories()
         {
-            return db.Categories
+            var dbCategories = db.Categories
                 .Include(c => c.ParentCategory)
-                .Select(ToModel)
                 .ToList();
-        }
 
-        private Category ToModel(DbCategory dbCategory)
-        {
-            return new Category(dbCategory.ID, dbCategory.Name, dbCategory.ParentCategory?.Name ?? "");
+            return mapper.Map<List<DbCategory>, List<Category>>(dbCategories);
         }
     }
 }
