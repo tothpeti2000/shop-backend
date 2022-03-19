@@ -1,4 +1,6 @@
-﻿using Domain.Models.ProductDTOs;
+﻿using AutoMapper;
+using Domain.Models;
+using Domain.Models.ProductDTOs;
 using Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -11,29 +13,45 @@ namespace Domain.Services
     public class ProductService
     {
         private readonly IProductRepository repository;
+        private readonly IMapper mapper;
 
         public ProductService(IProductRepository repository)
         {
             this.repository = repository;
+
+            var config = new MapperConfiguration(config =>
+            {
+                config.CreateMap<List<Product>, List<ProductListItem>>();
+                config.CreateMap<Product, ProductListItem>();
+            });
+
+            mapper = config.CreateMapper();
         }
 
         public List<ProductListItem> GetProductList()
         {
-            var dbProducts = repository.GetAllProducts();
+            var products = repository.GetAllProducts();
 
-            return mapper.Map<List<DbProduct>, List<ProductListItem>>(dbProducts);
+            return mapper.Map<List<Product>, List<ProductListItem>>(products);
+        }
+
+        public List<ProductListItem> GetProductsByName(string name)
+        {
+            var products = repository.GetProductsByName(name);
+
+            return mapper.Map<List<Product>, List<ProductListItem>>(products);
         }
 
         public ProductDetails? GetProductDetails(int ID)
         {
-            var product = GetByID(ID);
+            var product = repository.GetByID(ID); ;
 
             return mapper.Map<Product, ProductDetails>(product);
         }
 
         public double GetMaxPrice()
         {
-            return db.Products.Max(p => p.Price);
+            return repository.GetMaxPrice();
         }
     }
 }
