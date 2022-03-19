@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models.CategoryDTOs
 {
-    public class CategoryWithNameParent
+    public class CategoryNode
     {
         public int ID { get; set; }
         public string Name { get; set; }
