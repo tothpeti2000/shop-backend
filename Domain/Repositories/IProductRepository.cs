@@ -12,10 +12,7 @@ namespace Domain.Repositories
     {
         public List<Product> GetAllProducts();
         public Product? GetByID(int ID);
-        public ProductDetails? GetProductDetails(int ID);
-        public List<ProductListItem> GetProductList();
-        public List<ProductListItem> GetProductsByName(string name);
+        public List<Product> GetProductsByName(string name);
         public double GetMaxPrice();
-        public bool AddToCart(int ID);
     }
 }
