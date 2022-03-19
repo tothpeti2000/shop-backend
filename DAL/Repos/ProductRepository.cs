@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
+    // TODO: Check if BaseRepository is needed
     public class ProductRepository : BaseRepository, IProductRepository
     {
         public ProductRepository(ShopContext db): base(db){ }
@@ -23,26 +24,38 @@ namespace DAL.Repos
             config.AddProfile<MappingProfile>();
         }
 
-        public List<DbProduct> GetAllProducts()
+        public List<Product> GetAllProducts()
         {
-            return db.Products
+            var dbProducts = db.Products
                 .Include(p => p.Category)
                 .ToList();
+
+            return mapper.Map<List<DbProduct>, List<Product>>(dbProducts);
         }
 
-        public DbProduct? GetByID(int ID)
+        public Product? GetByID(int ID)
         {
-            return db.Products
+            var dbProduct = db.Products
                 .Include(p => p.Category)
                 .FirstOrDefault(p => p.ID == ID);
+
+            return mapper.Map<DbProduct, Product>(dbProduct);
         }
 
-        public List<DbProduct> GetProductsByName(string name)
+        public List<Product> GetProductsByName(string name)
         {
-            return db.Products
+            var matchingDbProducts = db.Products
                 .Include(p => p.Category)
                 .Where(p => p.Name.ToLower().Contains(name.ToLower()))
                 .ToList();
+
+            return mapper.Map<List<DbProduct>, List<Product>>(matchingDbProducts);
+        }
+
+        public double GetMaxPrice()
+        {
+            return db.Products
+                .Max(p => p.Price);
         }
     }
 }
