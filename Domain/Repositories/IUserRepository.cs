@@ -9,6 +9,6 @@ namespace Domain.Repositories
 {
     public interface IUserRepository
     {
-        public bool CreateUser(User user);
+        public Task<bool> CreateUser(User user);
     }
 }
