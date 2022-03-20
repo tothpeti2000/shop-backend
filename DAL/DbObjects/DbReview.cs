@@ -14,7 +14,7 @@ namespace DAL.DbObjects
         public DateTime CreatedAt { get; set; }
 
         public int UserID { get; set; }
-        public AspNetUser User { get; set; }
+        public DbUser User { get; set; }
 
         public int ProductID { get; set; }
         public DbProduct Product { get; set; }
