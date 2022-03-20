@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domain.Models;
+using Domain.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +10,16 @@ namespace Domain.Services
 {
     public class UserService
     {
-        public bool CreateUser()
+        private readonly IUserRepository repository;
+
+        public UserService(IUserRepository repository)
         {
-            return true;
+            this.repository = repository;
+        }
+
+        public bool CreateUser(User user)
+        {
+            return repository.CreateUser(user);
         }
     }
 }
