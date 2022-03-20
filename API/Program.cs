@@ -4,6 +4,7 @@ using DAL.Repos;
 using DAL.Repos.MockRepositories;
 using Domain.Profiles;
 using Domain.Repositories;
+using Domain.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +21,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<UserService, UserService>();
 builder.Services.AddIdentity<DbUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ShopContext>()
     .AddDefaultTokenProviders();
