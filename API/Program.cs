@@ -1,4 +1,5 @@
 using DAL;
+using DAL.DbObjects;
 using DAL.Repos;
 using DAL.Repos.MockRepositories;
 using Domain.Profiles;
@@ -19,8 +20,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ShopContext>();
+builder.Services.AddIdentity<DbUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ShopContext>()
+    .AddDefaultTokenProviders();
 
 var app = builder.Build();
 
@@ -41,7 +43,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

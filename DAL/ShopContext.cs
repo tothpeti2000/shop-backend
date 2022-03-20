@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class ShopContext: IdentityDbContext<IdentityUser>
+    public class ShopContext: IdentityDbContext<DbUser>
     {
         public DbSet<DbProduct> Products { get; set; }
         public DbSet<DbCategory> Categories { get; set; }
