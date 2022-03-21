@@ -35,7 +35,10 @@ using (var scope = app.Services.CreateScope())
     TestDataSeeder.Initialize(services);
 }
 
-app.UseCors(options => options.AllowAnyOrigin());
+app.UseCors(options => {
+    options.AllowAnyOrigin();
+    options.AllowAnyHeader();
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

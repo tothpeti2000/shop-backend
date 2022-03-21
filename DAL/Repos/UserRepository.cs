@@ -19,7 +19,7 @@ namespace DAL.Repos
             this.userManager = userManager;
         }
 
-        public async Task<bool> CreateUser(User user)
+        public async Task<AsyncResult> CreateUser(User user)
         {
             var newUser = new DbUser
             {
@@ -28,8 +28,14 @@ namespace DAL.Repos
             };
 
             var result = await userManager.CreateAsync(newUser, user.Password);
+            var error = result.Errors.FirstOrDefault();
+            var errorMessage = error?.Description;
 
-            return result.Succeeded;
+            return new AsyncResult
+            {
+                Succeeded = result.Succeeded,
+                ErrorMessage = errorMessage
+            };
         }
     }
 }

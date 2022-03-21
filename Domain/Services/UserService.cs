@@ -17,7 +17,7 @@ namespace Domain.Services
             this.repository = repository;
         }
 
-        public async Task<bool> CreateUser(User user)
+        public async Task<AsyncResult> CreateUser(User user)
         {
             return await repository.CreateUser(user);
         }

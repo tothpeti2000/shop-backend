@@ -19,14 +19,14 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult> RegisterUser([FromBody] User user)
         {
-            var succeeded = await userService.CreateUser(user);
+            var result = await userService.CreateUser(user);
 
-            if (succeeded)
+            if (result.Succeeded)
             {
-                return NoContent();
+                return Ok();
             }
 
-            return BadRequest();
+            return BadRequest(result.ErrorMessage);
         }
     }
 }
