@@ -16,9 +16,17 @@ namespace API.Controllers
             this.userService = userService;
         }
 
-        public ActionResult RegisterUser(User user)
+        [HttpPost]
+        public async Task<ActionResult> RegisterUser([FromBody] User user)
         {
-            userService.CreateUser();
+            var succeeded = await userService.CreateUser(user);
+
+            if (succeeded)
+            {
+                return NoContent();
+            }
+
+            return BadRequest();
         }
     }
 }
