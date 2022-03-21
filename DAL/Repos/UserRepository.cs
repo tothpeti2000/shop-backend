@@ -37,5 +37,35 @@ namespace DAL.Repos
                 ErrorMessage = errorMessage
             };
         }
+
+        public async Task<AsyncResult> LoginUser(LoginCredentials data)
+        {
+            var user = await userManager.FindByNameAsync(data.UserName);
+
+            if (user == null)
+            {
+                return new AsyncResult
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Sorry, we couldn't find a user with the given username."
+                };
+            }
+
+            var passwordOK = await userManager.CheckPasswordAsync(user, data.Password);
+
+            if (!passwordOK)
+            {
+                return new AsyncResult
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Wrong password! Please, try again!"
+                };
+            }
+
+            return new AsyncResult
+            {
+                Succeeded = true
+            };
+        }
     }
 }

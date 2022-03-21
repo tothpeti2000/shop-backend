@@ -21,5 +21,10 @@ namespace Domain.Services
         {
             return await repository.CreateUser(user);
         }
+
+        public async Task<AsyncResult> LoginUser(LoginCredentials data)
+        {
+            return await repository.LoginUser(data);
+        }
     }
 }

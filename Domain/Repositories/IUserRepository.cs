@@ -10,5 +10,6 @@ namespace Domain.Repositories
     public interface IUserRepository
     {
         public Task<AsyncResult> CreateUser(User user);
+        public Task<AsyncResult> LoginUser(LoginCredentials data);
     }
 }
