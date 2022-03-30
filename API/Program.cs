@@ -19,6 +19,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ProductService, ProductService>();
+builder.Services.AddScoped<CategoryService, CategoryService>();
 builder.Services.AddScoped<UserService, UserService>();
 builder.Services.AddIdentity<DbUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ShopContext>()
