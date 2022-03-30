@@ -17,13 +17,15 @@ namespace DAL.Repos
     {
         public ProductRepository(ShopContext db): base(db){ }
 
-        public async Task<List<Product>> GetAllProducts()
+        public async Task<PagedResponse<ProductListItem>> GetAllProducts(int page = 1, int count = 10)
         {
             var dbProducts = await db.Products
-                .Include(p => p.Category)
+                .OrderBy(p => p.ID)
                 .ToListAsync();
 
-            return mapper.Map<List<DbProduct>, List<Product>>(dbProducts);
+            var products = mapper.Map<List<DbProduct>, List<ProductListItem>>(dbProducts);
+
+            return Paginator<ProductListItem>.Paginate(products, page, count);
         }
 
         public Product? GetByID(int ID)

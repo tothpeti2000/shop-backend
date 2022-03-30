@@ -19,9 +19,9 @@ namespace API.Controllers
             this.productService = productService;
         }
 
-        public async Task<ActionResult> GetProductList()
+        public async Task<ActionResult> GetProductList([FromQuery] PagingParams pagingParams)
         {
-            var products = await productService.GetProductList();
+            var products = await productService.GetProductList(pagingParams.Page, pagingParams.Count);
 
             return Ok(products);
         }

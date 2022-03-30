@@ -19,11 +19,9 @@ namespace Domain.Services
             this.repository = repository;
         }
 
-        public async Task<List<ProductListItem>> GetProductList()
+        public async Task<PagedResponse<ProductListItem>> GetProductList(int page, int count)
         {
-            var products = await repository.GetAllProducts();
-
-            return mapper.Map<List<Product>, List<ProductListItem>>(products);
+            return await repository.GetAllProducts(page, count);
         }
 
         public List<ProductListItem> GetProductsByName(string name)
