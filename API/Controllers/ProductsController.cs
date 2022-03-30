@@ -25,9 +25,9 @@ namespace API.Controllers
         }
 
         [HttpGet("search")]
-        public ActionResult<List<ProductListItem>> GetProductsFromQuery([FromQuery] string query)
+        public ActionResult<List<ProductListItem>> GetProductsFromQuery([FromQuery] string q)
         {
-            return productService.GetProductsByName(query);
+            return productService.GetProductsByName(q);
         }
 
         [HttpGet("{ID}")]
