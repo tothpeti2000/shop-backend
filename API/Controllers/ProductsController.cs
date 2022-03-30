@@ -19,9 +19,11 @@ namespace API.Controllers
             this.productService = productService;
         }
 
-        public ActionResult<List<ProductListItem>> GetProductList()
+        public async Task<ActionResult> GetProductList()
         {
-            return productService.GetProductList();
+            var products = await productService.GetProductList();
+
+            return Ok(products);
         }
 
         [HttpGet("search")]

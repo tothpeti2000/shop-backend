@@ -10,7 +10,7 @@ namespace Domain.Repositories
 {
     public interface IProductRepository
     {
-        public List<Product> GetAllProducts();
+        public Task<List<Product>> GetAllProducts();
         public Product? GetByID(int ID);
         public List<Product> GetProductsByName(string name);
         public double GetMaxPrice();

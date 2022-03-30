@@ -17,11 +17,11 @@ namespace DAL.Repos
     {
         public ProductRepository(ShopContext db): base(db){ }
 
-        public List<Product> GetAllProducts()
+        public async Task<List<Product>> GetAllProducts()
         {
-            var dbProducts = db.Products
+            var dbProducts = await db.Products
                 .Include(p => p.Category)
-                .ToList();
+                .ToListAsync();
 
             return mapper.Map<List<DbProduct>, List<Product>>(dbProducts);
         }
