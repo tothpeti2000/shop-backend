@@ -1,6 +1,11 @@
 using DAL;
+using DAL.DbObjects;
 using DAL.Repos;
+using DAL.Repos.MockRepositories;
+using Domain.Profiles;
 using Domain.Repositories;
+using Domain.Services;
+using Microsoft.AspNetCore.Identity;
 using Domain.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,8 +20,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ProductService, ProductService>();
-builder.Services.AddScoped<CategoryService, CategoryService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<UserService, UserService>();
+builder.Services.AddIdentity<DbUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ShopContext>()
+    .AddDefaultTokenProviders();
 
 var app = builder.Build();
 
@@ -27,7 +35,10 @@ using (var scope = app.Services.CreateScope())
     TestDataSeeder.Initialize(services);
 }
 
-app.UseCors(options => options.AllowAnyOrigin());
+app.UseCors(options => {
+    options.AllowAnyOrigin();
+    options.AllowAnyHeader();
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -37,7 +48,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

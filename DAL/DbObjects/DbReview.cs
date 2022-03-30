@@ -13,8 +13,7 @@ namespace DAL.DbObjects
         public double Rating { get; set; }
         public DateTime CreatedAt { get; set; }
 
-        public int UserID { get; set; }
-        public AspNetUser User { get; set; }
+        public DbUser User { get; set; }
 
         public int ProductID { get; set; }
         public DbProduct Product { get; set; }
