@@ -12,10 +12,7 @@ namespace Domain.Models.ProductDTOs
         public string Name { get; set; }
         public double Price { get; set; }
         public int Stock { get; set; }
-
         public string? ImgURL { get; set; }
-
-        public int CategoryID { get; set; }
 
     }
 }
