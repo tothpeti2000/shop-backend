@@ -1,12 +1,9 @@
 using DAL;
 using DAL.DbObjects;
 using DAL.Repos;
-using DAL.Repos.MockRepositories;
-using Domain.Profiles;
 using Domain.Repositories;
 using Domain.Services;
 using Microsoft.AspNetCore.Identity;
-using Domain.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +18,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ProductService, ProductService>();
 builder.Services.AddScoped<UserService, UserService>();
 builder.Services.AddIdentity<DbUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ShopContext>()
