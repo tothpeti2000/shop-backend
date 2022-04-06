@@ -2,6 +2,7 @@
 using DAL.DbObjects;
 using DAL.Profiles;
 using Domain.Models;
+using Domain.Models.CategoryDTOs;
 using Domain.Repositories;
 using Domain.Services;
 using Microsoft.EntityFrameworkCore;
@@ -16,22 +17,19 @@ namespace DAL.Repos
     public class CategoryRepository : ICategoryRepository
     {
         private readonly ShopContext db;
-        private readonly Mapper<DbCategoryProfile> mapper;
+        private readonly Mapper<DbCategoryProfile> mapper = new();
 
         public CategoryRepository(ShopContext db)
         {
             this.db = db;
         }
 
-        public List<Category> GetAllCategories()
+        public async Task<List<CategoryNode>> GetCategoryNodes()
         {
-            var dbCategories = db.Categories
-                .Include(c => c.ParentCategory)
-                .ToList();
+            var dbCategories = await db.Categories
+                .ToListAsync();
 
-            //return mapper.Map<List<DbCategory>, List<Category>>(dbCategories);
-
-            return null;
+            return mapper.Map<List<DbCategory>, List<CategoryNode>>(dbCategories);
         }
     }
 }

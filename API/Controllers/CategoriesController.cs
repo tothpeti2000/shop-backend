@@ -18,9 +18,11 @@ namespace API.Controllers
             this.categoryService = categoryService;
         }
 
-        public ActionResult<List<CategoryNode>> GetCategoryNodes()
+        public async Task<ActionResult> GetCategoryNodes()
         {
-            return categoryService.GetCategoryNodes();
+            var categories = await categoryService.GetCategoryNodes();
+
+            return Ok(categories);
         }
     }
 }

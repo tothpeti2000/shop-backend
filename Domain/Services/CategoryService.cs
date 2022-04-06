@@ -18,13 +18,9 @@ namespace Domain.Services
             this.repository = repository;
         }
 
-        public List<CategoryNode> GetCategoryNodes()
+        public async Task<List<CategoryNode>> GetCategoryNodes()
         {
-            var categories = repository.GetAllCategories();
-
-            //return mapper.Map<List<Category>, List<CategoryNode>>(categories);
-
-            return null;
+            return await repository.GetCategoryNodes();
         }
     }
 }

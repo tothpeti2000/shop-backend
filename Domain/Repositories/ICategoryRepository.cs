@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Domain.Models.CategoryDTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Domain.Repositories
 {
     public interface ICategoryRepository
     {
-        public List<Category> GetAllCategories();
+        public Task<List<CategoryNode>> GetCategoryNodes();
     }
 }
