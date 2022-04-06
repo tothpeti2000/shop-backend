@@ -20,11 +20,13 @@ namespace Domain.Services
             this.repository = repository;
         }
 
+        // TODO: Paging actual iplementation
         public async Task<PagedResponse<ProductListItem>> GetProductList(int page, int count)
         {
             return await repository.GetAllProducts(page, count);
         }
 
+        // TODO: Paging
         public List<ProductListItem> GetProductsByName(string name)
         {
             var products = repository.GetProductsByName(name);

@@ -26,6 +26,7 @@ namespace DAL.Repos
             mapper = new Mapper<DbProductProfile>();
         }
 
+        // TODO: Paging
         public async Task<PagedResponse<ProductListItem>> GetAllProducts(int page = 1, int count = 10)
         {
             var dbProducts = await db.Products
@@ -46,6 +47,7 @@ namespace DAL.Repos
             return mapper.Map<DbProduct, ProductDetails>(dbProduct);
         }
 
+        // TODO: Paging
         public List<Product> GetProductsByName(string name)
         {
             var matchingDbProducts = db.Products
