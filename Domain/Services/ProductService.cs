@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using Domain.Mapping.Profiles;
 using Domain.Models;
 using Domain.Models.ProductDTOs;
 using Domain.Repositories;
@@ -10,11 +10,12 @@ using System.Threading.Tasks;
 
 namespace Domain.Services
 {
-    public class ProductService: BaseService
+    public class ProductService
     {
         private readonly IProductRepository repository;
+        private readonly Mapper<ProductProfile> mapper;
 
-        public ProductService(IProductRepository repository): base()
+        public ProductService(IProductRepository repository)
         {
             this.repository = repository;
         }

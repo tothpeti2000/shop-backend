@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Domain.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +11,11 @@ namespace DAL.Repos
     public abstract class BaseRepository
     {
         protected readonly ShopContext db;
-        protected readonly IMapper mapper;
+        protected readonly Domain.Services.Mapper mapper;
 
         protected BaseRepository(ShopContext db)
         {
             this.db = db;
-
-            var config = new MapperConfiguration(config =>
-            {
-                config.AddProfile<MappingProfile>();
-            });
-
-            mapper = config.CreateMapper();
         }
     }
 }
