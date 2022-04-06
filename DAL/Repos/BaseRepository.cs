@@ -11,7 +11,7 @@ namespace DAL.Repos
     public abstract class BaseRepository
     {
         protected readonly ShopContext db;
-        protected readonly Domain.Services.Mapper mapper;
+        //protected readonly Domain.Services.Mapper mapper;
 
         protected BaseRepository(ShopContext db)
         {

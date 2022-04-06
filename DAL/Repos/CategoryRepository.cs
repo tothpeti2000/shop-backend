@@ -21,7 +21,9 @@ namespace DAL.Repos
                 .Include(c => c.ParentCategory)
                 .ToList();
 
-            return mapper.Map<List<DbCategory>, List<Category>>(dbCategories);
+            //return mapper.Map<List<DbCategory>, List<Category>>(dbCategories);
+
+            return null;
         }
     }
 }

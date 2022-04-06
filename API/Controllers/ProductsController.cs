@@ -33,16 +33,16 @@ namespace API.Controllers
         }
 
         [HttpGet("{ID}")]
-        public ActionResult<ProductDetails> GetProductDetails(int ID)
+        public async Task<ActionResult> GetProductDetails(int ID)
         {
-            var productDetails = productService.GetProductDetails(ID);
+            var productDetails = await productService.GetProductDetails(ID);
 
             if (productDetails == null)
             {
                 return NotFound();
             }
 
-            return productDetails;
+            return Ok(productDetails);
 
         }
 

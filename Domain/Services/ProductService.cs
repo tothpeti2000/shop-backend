@@ -32,11 +32,9 @@ namespace Domain.Services
             return mapper.Map<List<Product>, List<ProductListItem>>(products);
         }
 
-        public ProductDetails? GetProductDetails(int ID)
+        public async Task<ProductDetails?> GetProductDetails(int ID)
         {
-            var product = repository.GetByID(ID); ;
-
-            return mapper.Map<Product, ProductDetails>(product);
+            return await repository.GetDetailsByID(ID);
         }
 
         public double GetMaxPrice()

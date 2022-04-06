@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Services
 {
-    public class CategoryService: BaseService
+    public class CategoryService
     {
         private readonly ICategoryRepository repository;
 
-        public CategoryService(ICategoryRepository repository): base()
+        public CategoryService(ICategoryRepository repository)
         {
             this.repository = repository;
         }
@@ -22,7 +22,9 @@ namespace Domain.Services
         {
             var categories = repository.GetAllCategories();
 
-            return mapper.Map<List<Category>, List<CategoryNode>>(categories);
+            //return mapper.Map<List<Category>, List<CategoryNode>>(categories);
+
+            return null;
         }
     }
 }

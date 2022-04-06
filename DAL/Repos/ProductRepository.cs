@@ -1,9 +1,11 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
+﻿using AutoMapper.QueryableExtensions;
 using DAL.DbObjects;
+using DAL.Profiles;
+using Domain.Mapping.Profiles;
 using Domain.Models;
 using Domain.Models.ProductDTOs;
 using Domain.Repositories;
+using Domain.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,9 +15,16 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    public class ProductRepository : BaseRepository, IProductRepository
+    public class ProductRepository : IProductRepository
     {
-        public ProductRepository(ShopContext db): base(db){ }
+        private readonly ShopContext db;
+        private readonly Mapper<DbProductProfile> mapper;
+
+        public ProductRepository(ShopContext db) 
+        {
+            this.db = db;
+            mapper = new Mapper<DbProductProfile>();
+        }
 
         public async Task<PagedResponse<ProductListItem>> GetAllProducts(int page = 1, int count = 10)
         {
@@ -25,16 +34,16 @@ namespace DAL.Repos
 
             var products = mapper.Map<List<DbProduct>, List<ProductListItem>>(dbProducts);
 
-            return Paginator<ProductListItem>.Paginate(products, page, count);
+            //return Paginator<ProductListItem>.Paginate(products, page, count);
+            return null;
         }
 
-        public Product? GetByID(int ID)
+        public async Task<ProductDetails?> GetDetailsByID(int ID)
         {
-            var dbProduct = db.Products
-                .Include(p => p.Category)
-                .FirstOrDefault(p => p.ID == ID);
+            var dbProduct = await db.Products
+                .FirstOrDefaultAsync(p => p.ID == ID);
 
-            return mapper.Map<DbProduct, Product>(dbProduct);
+            return mapper.Map<DbProduct, ProductDetails>(dbProduct);
         }
 
         public List<Product> GetProductsByName(string name)
