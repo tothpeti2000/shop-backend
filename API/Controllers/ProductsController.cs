@@ -20,15 +20,17 @@ namespace API.Controllers
 
         public async Task<ActionResult> GetProductList([FromQuery] PagingParams pagingParams)
         {
-            var response = await productService.GetProductList(pagingParams.Page, pagingParams.Limit);
+            var response = await productService.GetProductList(pagingParams.Page, pagingParams.Limit, null);
 
             return Ok(response);
         }
 
         [HttpGet("search")]
-        public ActionResult<List<ProductListItem>> GetProductsFromQuery([FromQuery] string q)
+        public async Task<ActionResult> GetProductsFromQuery([FromQuery] string q, [FromQuery] PagingParams pagingParams)
         {
-            return productService.GetProductsByName(q);
+            var response = await productService.GetProductList(pagingParams.Page, pagingParams.Limit, q);
+
+            return Ok(response);
         }
 
         [HttpGet("{ID}")]

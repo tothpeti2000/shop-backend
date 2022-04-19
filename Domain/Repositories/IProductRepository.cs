@@ -11,9 +11,8 @@ namespace Domain.Repositories
 {
     public interface IProductRepository
     {
-        public Task<PagedResponse<ProductListItem>> GetProductsPaged(int page, int limit);
+        public Task<PagedResponse<ProductListItem>> GetProductsPaged(int page, int limit, string? name);
         public Task<ProductDetails?> GetDetailsByID(int ID);
-        public List<Product> GetProductsByName(string name);
         public double GetMaxPrice();
     }
 }

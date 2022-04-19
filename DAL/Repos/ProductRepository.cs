@@ -27,10 +27,11 @@ namespace DAL.Repos
             mapper = new Mapper<DbProductProfile>();
         }
 
-        public async Task<PagedResponse<ProductListItem>> GetProductsPaged(int page, int limit)
+        public async Task<PagedResponse<ProductListItem>> GetProductsPaged(int page, int limit, string? name)
         {
             var dbProducts = db.Products
-                .OrderBy(p => p.ID);
+                .OrderBy(p => p.ID)
+                .Where(p => name == null ? true : p.Name.ToUpper().Contains(name.ToUpper()));
 
             var totalProducts = dbProducts.Count();
 
@@ -56,17 +57,6 @@ namespace DAL.Repos
                 .FirstOrDefaultAsync(p => p.ID == ID);
 
             return mapper.Map<DbProduct, ProductDetails>(dbProduct);
-        }
-
-        // TODO: Paging
-        public List<Product> GetProductsByName(string name)
-        {
-            var matchingDbProducts = db.Products
-                .Include(p => p.Category)
-                .Where(p => p.Name.ToLower().Contains(name.ToLower()))
-                .ToList();
-
-            return mapper.Map<List<DbProduct>, List<Product>>(matchingDbProducts);
         }
 
         public double GetMaxPrice()
