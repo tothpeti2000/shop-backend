@@ -31,9 +31,9 @@ namespace Domain.Services
             return await repository.GetDetailsByID(ID);
         }
 
-        public double GetMaxPrice()
+        public async Task<double> GetMaxPrice()
         {
-            return repository.GetMaxPrice();
+            return await repository.GetMaxPrice();
         }
     }
 }

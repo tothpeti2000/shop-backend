@@ -48,9 +48,11 @@ namespace API.Controllers
         }
 
         [HttpGet("maxprice")]
-        public ActionResult<double> GetMaxPrice()
+        public async Task<ActionResult> GetMaxPrice()
         {
-            return productService.GetMaxPrice();
+            var maxPrice = await productService.GetMaxPrice();
+
+            return Ok(maxPrice);
         }
     }
 }

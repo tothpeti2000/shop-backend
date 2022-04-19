@@ -59,10 +59,10 @@ namespace DAL.Repos
             return mapper.Map<DbProduct, ProductDetails>(dbProduct);
         }
 
-        public double GetMaxPrice()
+        public async Task<double> GetMaxPrice()
         {
-            return db.Products
-                .Max(p => p.Price);
+            return await db.Products
+                .MaxAsync(p => p.Price);
         }
     }
 }

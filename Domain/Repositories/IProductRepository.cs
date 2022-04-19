@@ -13,6 +13,6 @@ namespace Domain.Repositories
     {
         public Task<PagedResponse<ProductListItem>> GetProductsPaged(int page, int limit, string? name);
         public Task<ProductDetails?> GetDetailsByID(int ID);
-        public double GetMaxPrice();
+        public Task<double> GetMaxPrice();
     }
 }
