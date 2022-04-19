@@ -21,19 +21,19 @@ namespace Domain.Services
             this.repository = repository;
         }
 
-        public async Task<PagedResponse<ProductListItem>> GetProductList(int page, int limit, string? name)
+        public async Task<PagedResponse<ProductListItem>> GetProductListAsync(int page, int limit, string? name)
         {
-            return await repository.GetProductsPaged(page, limit, name);
+            return await repository.GetProductsPagedAsync(page, limit, name);
         }
 
-        public async Task<ProductDetails?> GetProductDetails(int ID)
+        public async Task<ProductDetails?> GetProductDetailsAsync(int ID)
         {
-            return await repository.GetDetailsByID(ID);
+            return await repository.GetDetailsByIDAsync(ID);
         }
 
-        public async Task<double> GetMaxPrice()
+        public async Task<double> GetMaxPriceAsync()
         {
-            return await repository.GetMaxPrice();
+            return await repository.GetMaxPriceAsync();
         }
     }
 }

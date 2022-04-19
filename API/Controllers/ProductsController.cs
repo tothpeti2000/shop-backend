@@ -20,7 +20,7 @@ namespace API.Controllers
 
         public async Task<ActionResult> GetProductList([FromQuery] PagingParams pagingParams)
         {
-            var response = await productService.GetProductList(pagingParams.Page, pagingParams.Limit, null);
+            var response = await productService.GetProductListAsync(pagingParams.Page, pagingParams.Limit, null);
 
             return Ok(response);
         }
@@ -28,7 +28,7 @@ namespace API.Controllers
         [HttpGet("search")]
         public async Task<ActionResult> GetProductsFromQuery([FromQuery] string q, [FromQuery] PagingParams pagingParams)
         {
-            var response = await productService.GetProductList(pagingParams.Page, pagingParams.Limit, q);
+            var response = await productService.GetProductListAsync(pagingParams.Page, pagingParams.Limit, q);
 
             return Ok(response);
         }
@@ -36,7 +36,7 @@ namespace API.Controllers
         [HttpGet("{ID}")]
         public async Task<ActionResult> GetProductDetails(int ID)
         {
-            var productDetails = await productService.GetProductDetails(ID);
+            var productDetails = await productService.GetProductDetailsAsync(ID);
 
             if (productDetails == null)
             {
@@ -50,7 +50,7 @@ namespace API.Controllers
         [HttpGet("maxprice")]
         public async Task<ActionResult> GetMaxPrice()
         {
-            var maxPrice = await productService.GetMaxPrice();
+            var maxPrice = await productService.GetMaxPriceAsync();
 
             return Ok(maxPrice);
         }

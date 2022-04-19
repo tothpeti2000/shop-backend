@@ -27,7 +27,7 @@ namespace DAL.Repos
             mapper = new Mapper<DbProductProfile>();
         }
 
-        public async Task<PagedResponse<ProductListItem>> GetProductsPaged(int page, int limit, string? name)
+        public async Task<PagedResponse<ProductListItem>> GetProductsPagedAsync(int page, int limit, string? name)
         {
             var dbProducts = db.Products
                 .OrderBy(p => p.ID)
@@ -51,7 +51,7 @@ namespace DAL.Repos
             };
         }
 
-        public async Task<ProductDetails?> GetDetailsByID(int ID)
+        public async Task<ProductDetails?> GetDetailsByIDAsync(int ID)
         {
             var dbProduct = await db.Products
                 .FirstOrDefaultAsync(p => p.ID == ID);
@@ -59,7 +59,7 @@ namespace DAL.Repos
             return mapper.Map<DbProduct, ProductDetails>(dbProduct);
         }
 
-        public async Task<double> GetMaxPrice()
+        public async Task<double> GetMaxPriceAsync()
         {
             return await db.Products
                 .MaxAsync(p => p.Price);
