@@ -1,5 +1,6 @@
 ﻿using Domain.Mapping.Profiles;
 using Domain.Models;
+using Domain.Models.Paging;
 using Domain.Models.ProductDTOs;
 using Domain.Repositories;
 using System;
@@ -20,10 +21,9 @@ namespace Domain.Services
             this.repository = repository;
         }
 
-        // TODO: Paging actual iplementation
         public async Task<PagedResponse<ProductListItem>> GetProductList(int page, int count)
         {
-            return await repository.GetAllProducts(page, count);
+            return await repository.GetProductsPaged(page, count);
         }
 
         // TODO: Paging

@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models
+namespace Domain.Models.Paging
 {
     public class PagingParams
     {
+        // Default values
         private int page = 1;
-        private int count = 10;
+        private int limit = 20;
 
         private readonly int minPage = 1;
-        private readonly int maxPageCount = 50;
+        private readonly int minLimit = 0;
+        private readonly int maxLimit = 50;
 
         public int Page
         {
@@ -35,22 +37,24 @@ namespace Domain.Models
             }
         }
 
-        public int Count
+        public int Limit
         {
             get
             {
-                return count;
+                return limit;
             }
 
             set
             {
-                if (value > maxPageCount)
+                if (value < minLimit)
                 {
-                    count = maxPageCount;
-                }
-                else
+                    limit = minLimit;
+                } else if (value > maxLimit)
                 {
-                    count = value;
+                    limit = maxLimit;
+                } else
+                {
+                    limit = value;
                 }
             }
         }

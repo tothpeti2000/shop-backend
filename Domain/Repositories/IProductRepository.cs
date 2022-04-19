@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Domain.Models.Paging;
 using Domain.Models.ProductDTOs;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace Domain.Repositories
 {
     public interface IProductRepository
     {
-        public Task<PagedResponse<ProductListItem>> GetAllProducts(int page = 1, int count = 10);
+        public Task<PagedResponse<ProductListItem>> GetProductsPaged(int page, int limit);
         public Task<ProductDetails?> GetDetailsByID(int ID);
         public List<Product> GetProductsByName(string name);
         public double GetMaxPrice();

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Domain.Models;
+using Domain.Models.Paging;
 using Domain.Models.ProductDTOs;
-using Domain.Repositories;
 using Domain.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,9 +20,9 @@ namespace API.Controllers
 
         public async Task<ActionResult> GetProductList([FromQuery] PagingParams pagingParams)
         {
-            var products = await productService.GetProductList(pagingParams.Page, pagingParams.Count);
+            var response = await productService.GetProductList(pagingParams.Page, pagingParams.Limit);
 
-            return Ok(products);
+            return Ok(response);
         }
 
         [HttpGet("search")]

@@ -3,6 +3,7 @@ using DAL.DbObjects;
 using DAL.Profiles;
 using Domain.Mapping.Profiles;
 using Domain.Models;
+using Domain.Models.Paging;
 using Domain.Models.ProductDTOs;
 using Domain.Repositories;
 using Domain.Services;
@@ -26,17 +27,27 @@ namespace DAL.Repos
             mapper = new Mapper<DbProductProfile>();
         }
 
-        // TODO: Paging
-        public async Task<PagedResponse<ProductListItem>> GetAllProducts(int page = 1, int count = 10)
+        public async Task<PagedResponse<ProductListItem>> GetProductsPaged(int page, int limit)
         {
-            var dbProducts = await db.Products
-                .OrderBy(p => p.ID)
-                .ToListAsync();
+            var dbProducts = db.Products
+                .OrderBy(p => p.ID);
 
-            var products = mapper.Map<List<DbProduct>, List<ProductListItem>>(dbProducts);
+            var totalProducts = dbProducts.Count();
 
-            //return Paginator<ProductListItem>.Paginate(products, page, count);
-            return null;
+            var pagedDbProducts = await dbProducts
+                .Skip((page - 1) * limit)
+                .Take(limit)
+                .ToArrayAsync();
+
+            var pagedProducts = mapper.Map<DbProduct[], ProductListItem[]>(pagedDbProducts);
+
+            return new PagedResponse<ProductListItem>
+            {
+                Items = pagedProducts,
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling((double)totalProducts / limit),
+                TotalItems = totalProducts
+            };
         }
 
         public async Task<ProductDetails?> GetDetailsByID(int ID)
