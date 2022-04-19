@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models.Paging
+namespace Domain.Models.QueryParams.Paging
 {
     public class PagingParams
     {

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using Domain.Models.Paging;
 using Domain.Models.ProductDTOs;
+using Domain.Models.QueryParams.Paging;
+using Domain.Models.QueryParams.SortFilter;
 using Domain.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,17 +19,17 @@ namespace API.Controllers
             this.productService = productService;
         }
 
-        public async Task<ActionResult> GetProductList([FromQuery] PagingParams pagingParams)
+        public async Task<ActionResult> GetProductList([FromQuery] PagingParams pagingParams, [FromQuery] SortFilterParams sortFilterParams)
         {
-            var response = await productService.GetProductListAsync(pagingParams.Page, pagingParams.Limit, null);
+            var response = await productService.GetProductListAsync(pagingParams, null, sortFilterParams);
 
             return Ok(response);
         }
 
         [HttpGet("search")]
-        public async Task<ActionResult> GetProductsFromQuery([FromQuery] string q, [FromQuery] PagingParams pagingParams)
+        public async Task<ActionResult> GetProductsFromQuery([FromQuery] string q, [FromQuery] PagingParams pagingParams, [FromQuery] SortFilterParams sortFilterParams)
         {
-            var response = await productService.GetProductListAsync(pagingParams.Page, pagingParams.Limit, q);
+            var response = await productService.GetProductListAsync(pagingParams, q, sortFilterParams);
 
             return Ok(response);
         }

@@ -1,7 +1,8 @@
 ﻿using Domain.Mapping.Profiles;
 using Domain.Models;
-using Domain.Models.Paging;
 using Domain.Models.ProductDTOs;
+using Domain.Models.QueryParams.Paging;
+using Domain.Models.QueryParams.SortFilter;
 using Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,9 @@ namespace Domain.Services
             this.repository = repository;
         }
 
-        public async Task<PagedResponse<ProductListItem>> GetProductListAsync(int page, int limit, string? name)
+        public async Task<PagedResponse<ProductListItem>> GetProductListAsync(PagingParams pagingParams, string? name, SortFilterParams sortFilterParams)
         {
-            return await repository.GetProductsPagedAsync(page, limit, name);
+            return await repository.GetProductsPagedAsync(pagingParams, name, sortFilterParams);
         }
 
         public async Task<ProductDetails?> GetProductDetailsAsync(int ID)
