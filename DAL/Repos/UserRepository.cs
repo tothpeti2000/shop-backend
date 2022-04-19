@@ -28,13 +28,14 @@ namespace DAL.Repos
             };
 
             var result = await userManager.CreateAsync(newUser, user.Password);
-            var error = result.Errors.FirstOrDefault();
-            var errorMessage = error?.Description;
+            var errorMessages = result.Errors
+                .Select(err => err.Description)
+                .ToList();
 
             return new AsyncResult
             {
                 Succeeded = result.Succeeded,
-                ErrorMessage = errorMessage
+                ErrorMessages = errorMessages
             };
         }
 
@@ -47,7 +48,7 @@ namespace DAL.Repos
                 return new AsyncResult
                 {
                     Succeeded = false,
-                    ErrorMessage = "Sorry, we couldn't find a user with the given username."
+                    //ErrorMessage = "Sorry, we couldn't find a user with the given username."
                 };
             }
 
@@ -58,7 +59,7 @@ namespace DAL.Repos
                 return new AsyncResult
                 {
                     Succeeded = false,
-                    ErrorMessage = "Wrong password! Please, try again!"
+                    //ErrorMessage = "Wrong password! Please, try again!"
                 };
             }
 

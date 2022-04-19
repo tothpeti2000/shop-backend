@@ -26,7 +26,7 @@ namespace API.Controllers
                 return Ok();
             }
 
-            return BadRequest(result.ErrorMessage);
+            return BadRequest(result.ErrorMessages);
         }
 
         [HttpPost("login")]
@@ -39,7 +39,7 @@ namespace API.Controllers
                 return Ok();
             }
 
-            return BadRequest(result.ErrorMessage);
+            return BadRequest(result.ErrorMessages);
         }
     }
 }

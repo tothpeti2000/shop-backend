@@ -9,6 +9,6 @@ namespace Domain.Models
     public class AsyncResult
     {
         public bool Succeeded { get; set; }
-        public string? ErrorMessage { get; set; }
+        public List<string> ErrorMessages { get; set; }
     }
 }
