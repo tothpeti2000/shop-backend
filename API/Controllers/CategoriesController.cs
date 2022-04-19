@@ -20,7 +20,7 @@ namespace API.Controllers
 
         public async Task<ActionResult> GetCategoryNodes()
         {
-            var categories = await categoryService.GetCategoryNodes();
+            var categories = await categoryService.GetCategoryNodesAsync();
 
             return Ok(categories);
         }

@@ -18,9 +18,9 @@ namespace Domain.Services
             this.repository = repository;
         }
 
-        public async Task<List<CategoryNode>> GetCategoryNodes()
+        public async Task<CategoryNode[]> GetCategoryNodesAsync()
         {
-            return await repository.GetCategoryNodes();
+            return await repository.GetCategoryNodesAsync();
         }
     }
 }

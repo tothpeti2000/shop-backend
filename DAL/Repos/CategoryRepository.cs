@@ -24,12 +24,12 @@ namespace DAL.Repos
             this.db = db;
         }
 
-        public async Task<List<CategoryNode>> GetCategoryNodes()
+        public async Task<CategoryNode[]> GetCategoryNodesAsync()
         {
             var dbCategories = await db.Categories
-                .ToListAsync();
+                .ToArrayAsync();
 
-            return mapper.Map<List<DbCategory>, List<CategoryNode>>(dbCategories);
+            return mapper.Map<DbCategory[], CategoryNode[]>(dbCategories);
         }
     }
 }
