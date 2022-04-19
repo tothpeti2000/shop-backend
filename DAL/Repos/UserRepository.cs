@@ -19,7 +19,7 @@ namespace DAL.Repos
             this.userManager = userManager;
         }
 
-        public async Task<AsyncResult> CreateUser(User user)
+        public async Task<AsyncResult> CreateUserAsync(User user)
         {
             var newUser = new DbUser
             {
@@ -39,7 +39,7 @@ namespace DAL.Repos
             };
         }
 
-        public async Task<AsyncResult> LoginUser(LoginCredentials data)
+        public async Task<AsyncResult> LoginUserAsync(LoginCredentials data)
         {
             var user = await userManager.FindByNameAsync(data.UserName);
 

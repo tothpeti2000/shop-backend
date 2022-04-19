@@ -19,12 +19,12 @@ namespace Domain.Services
 
         public async Task<AsyncResult> CreateUser(User user)
         {
-            return await repository.CreateUser(user);
+            return await repository.CreateUserAsync(user);
         }
 
         public async Task<AsyncResult> LoginUser(LoginCredentials data)
         {
-            return await repository.LoginUser(data);
+            return await repository.LoginUserAsync(data);
         }
     }
 }

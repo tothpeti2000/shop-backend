@@ -9,7 +9,7 @@ namespace Domain.Repositories
 {
     public interface IUserRepository
     {
-        public Task<AsyncResult> CreateUser(User user);
-        public Task<AsyncResult> LoginUser(LoginCredentials data);
+        public Task<AsyncResult> CreateUserAsync(User user);
+        public Task<AsyncResult> LoginUserAsync(LoginCredentials data);
     }
 }
