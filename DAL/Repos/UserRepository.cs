@@ -48,7 +48,7 @@ namespace DAL.Repos
                 return new AsyncResult
                 {
                     Succeeded = false,
-                    //ErrorMessage = "Sorry, we couldn't find a user with the given username."
+                    ErrorMessages = new List<string> { "Sorry, we couldn't find a user with the given username." }
                 };
             }
 
@@ -59,7 +59,7 @@ namespace DAL.Repos
                 return new AsyncResult
                 {
                     Succeeded = false,
-                    //ErrorMessage = "Wrong password! Please, try again!"
+                    ErrorMessages = new List<string> { "Wrong password! Please, try again!" }
                 };
             }
 
