@@ -3,8 +3,11 @@ using DAL.DbObjects;
 using DAL.Repos;
 using Domain.Repositories;
 using Domain.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -14,6 +17,28 @@ builder.Services.AddCors(c => c.AddPolicy("AllowOrigin", options => options.Allo
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddAuthentication(x =>
+{
+	x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+	x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(option =>
+{
+	var key = Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]);
+	option.SaveToken = true;
+	option.TokenValidationParameters = new TokenValidationParameters
+	{
+		ValidateIssuer = false,
+		ValidateAudience = false,
+		ValidateLifetime = true,
+		ValidateIssuerSigningKey = true,
+		//ValidIssuer = Configuration["JWT:Issuer"],
+		//ValidAudience = Configuration["JWT:Audience"],
+		IssuerSigningKey = new SymmetricSecurityKey(key)
+	};
+});
+
+//builder.Services.AddSingleton<IJWTManagerRepository, JWTManagerRepository>();
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
