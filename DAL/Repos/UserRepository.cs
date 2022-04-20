@@ -68,7 +68,8 @@ namespace DAL.Repos
 
             return new AsyncResult
             {
-                Succeeded = true
+                Succeeded = true,
+                Token = GenerateJWTToken(user)
             };
         }
 
