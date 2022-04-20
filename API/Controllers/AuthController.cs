@@ -36,7 +36,7 @@ namespace API.Controllers
 
             if (result.Succeeded)
             {
-                return Ok();
+                return Ok(result.Token);
             }
 
             return BadRequest(result.ErrorMessages);

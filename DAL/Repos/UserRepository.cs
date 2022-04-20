@@ -2,6 +2,7 @@
 using Domain.Models;
 using Domain.Repositories;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,12 @@ namespace DAL.Repos
     public class UserRepository : IUserRepository
     {
         private readonly UserManager<DbUser> userManager;
+        private readonly IConfiguration config;
 
-        public UserRepository(UserManager<DbUser> userManager)
+        public UserRepository(UserManager<DbUser> userManager, IConfiguration config)
         {
             this.userManager = userManager;
+            this.config = config;
         }
 
         public async Task<AsyncResult> CreateUserAsync(User user)
@@ -76,7 +79,7 @@ namespace DAL.Repos
         private string GenerateJWTToken(DbUser user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var tokenKey = Encoding.UTF8.GetBytes("Shop secret key for JWT authorization");
+            var tokenKey = Encoding.UTF8.GetBytes(config.GetSection("JWT:Key").Value);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -84,9 +87,11 @@ namespace DAL.Repos
                 {
                     new Claim(ClaimTypes.Name, user.Id)
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(10),
+                Issuer = config.GetSection("JWT:Issuer").Value,
+                Audience = config.GetSection("JWT:Audience").Value,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
             };
+
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             return tokenHandler.WriteToken(token);

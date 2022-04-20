@@ -18,37 +18,39 @@ builder.Services.AddCors(c => c.AddPolicy("AllowOrigin", options => options.Allo
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAuthentication(x =>
-{
-	x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-	x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(option =>
-{
-	var key = Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]);
-	option.SaveToken = true;
-	option.TokenValidationParameters = new TokenValidationParameters
-	{
-		ValidateIssuer = false,
-		ValidateAudience = false,
-		ValidateLifetime = true,
-		ValidateIssuerSigningKey = true,
-		//ValidIssuer = Configuration["JWT:Issuer"],
-		//ValidAudience = Configuration["JWT:Audience"],
-		IssuerSigningKey = new SymmetricSecurityKey(key)
-	};
-});
-
-//builder.Services.AddSingleton<IJWTManagerRepository, JWTManagerRepository>();
-
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ProductService, ProductService>();
 builder.Services.AddScoped<CategoryService, CategoryService>();
 builder.Services.AddScoped<UserService, UserService>();
-builder.Services.AddIdentity<DbUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ShopContext>()
-    .AddDefaultTokenProviders();
+
+builder.Services.AddIdentity<DbUser, IdentityRole>(options => options.User.RequireUniqueEmail = true)
+	.AddEntityFrameworkStores<ShopContext>()
+	.AddDefaultTokenProviders();
+
+builder.Services.AddAuthentication(options =>
+{
+	options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+	options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+	options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(option =>
+{
+	var key = Encoding.UTF8.GetBytes(builder.Configuration.GetSection("JWT:Key").Value);
+	
+	option.TokenValidationParameters = new TokenValidationParameters
+	{
+		ValidateIssuerSigningKey = true,
+		IssuerSigningKey = new SymmetricSecurityKey(key),
+		ValidateIssuer = false,
+		ValidIssuer = builder.Configuration.GetSection("JWT:Issuer").Value,
+		ValidateAudience = false,
+		ValidAudience = builder.Configuration.GetSection("JWT:Audience").Value,
+
+		// Change to true if refresh tokens are used
+		ValidateLifetime = false,
+	};
+});
 
 var app = builder.Build();
 
