@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.DbObjects
 {
-    internal class DbCart
+    public class DbCart
     {
         public int ID { get; set; }
 
