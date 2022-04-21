@@ -13,6 +13,7 @@ namespace DAL.Profiles
     {
         public DbCategoryProfile()
         {
+            CreateMap<DbCategory, CategoryCover>();
             CreateMap<DbCategory, CategoryNode>();
         }
     }

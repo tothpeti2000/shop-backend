@@ -18,6 +18,11 @@ namespace Domain.Services
             this.repository = repository;
         }
 
+        public async Task<CategoryCover[]> GetTopCategoriesAsync()
+        {
+            return await repository.GetTopCategoriesAsync();
+        }
+
         public async Task<CategoryNode[]> GetCategoryNodesAsync()
         {
             return await repository.GetCategoryNodesAsync();

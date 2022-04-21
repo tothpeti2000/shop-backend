@@ -10,6 +10,7 @@ namespace Domain.Repositories
 {
     public interface ICategoryRepository
     {
+        public Task<CategoryCover[]> GetTopCategoriesAsync();
         public Task<CategoryNode[]> GetCategoryNodesAsync();
     }
 }

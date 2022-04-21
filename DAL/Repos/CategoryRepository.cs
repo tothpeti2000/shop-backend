@@ -24,6 +24,16 @@ namespace DAL.Repos
             this.db = db;
         }
 
+        public async Task<CategoryCover[]> GetTopCategoriesAsync()
+        {
+            // TODO: change to actual order
+            var topCategories = await db.Categories
+                .Take(3)
+                .ToArrayAsync();
+
+            return mapper.Map<DbCategory[], CategoryCover[]>(topCategories);
+        }
+
         public async Task<CategoryNode[]> GetCategoryNodesAsync()
         {
             var dbCategories = await db.Categories

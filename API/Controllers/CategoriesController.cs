@@ -18,6 +18,14 @@ namespace API.Controllers
             this.categoryService = categoryService;
         }
 
+        [HttpGet("top")]
+        public async Task<ActionResult> GetTopCategories()
+        {
+            var topCategories = await categoryService.GetTopCategoriesAsync();
+
+            return Ok(topCategories);
+        }
+
         public async Task<ActionResult> GetCategoryNodes()
         {
             var categories = await categoryService.GetCategoryNodesAsync();

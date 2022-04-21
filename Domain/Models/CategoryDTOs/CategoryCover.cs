@@ -6,17 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domain.Models.CategoryDTOs
 {
-    public class CategoryWithNameImg
+    public class CategoryCover
     {
         public int ID { get; set; }
         public string Name { get; set; }
         public string? ImgURL { get; set; }
-
-        public CategoryWithNameImg(int Id, string name, string? imgURL)
-        {
-            ID = Id;
-            Name = name;
-            ImgURL = imgURL;
-        }
     }
 }
