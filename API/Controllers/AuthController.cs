@@ -10,10 +10,12 @@ namespace API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserService userService;
+        private readonly TokenHandler tokenHandler;
 
-        public AuthController(UserService userService)
+        public AuthController(UserService userService, TokenHandler tokenHandler)
         {
             this.userService = userService;
+            this.tokenHandler = tokenHandler;
         }
 
         [HttpPost("register")]
@@ -36,7 +38,8 @@ namespace API.Controllers
 
             if (result.Succeeded)
             {
-                return Ok(result.Token);
+                var token = tokenHandler.GenerateJWTToken(result.Payload);
+                return Ok(token);
             }
 
             return BadRequest(result.ErrorMessages);
