@@ -1,3 +1,4 @@
+using API;
 using DAL;
 using DAL.DbObjects;
 using DAL.Repos;
@@ -24,6 +25,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ProductService, ProductService>();
 builder.Services.AddScoped<CategoryService, CategoryService>();
 builder.Services.AddScoped<UserService, UserService>();
+builder.Services.AddScoped<API.TokenHandler, API.TokenHandler>();
 
 builder.Services.AddIdentity<DbUser, IdentityRole>(options => options.User.RequireUniqueEmail = true)
 	.AddEntityFrameworkStores<ShopContext>()

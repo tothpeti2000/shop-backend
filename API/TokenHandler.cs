@@ -23,7 +23,7 @@ namespace API
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, userID)
+                    new Claim(JwtRegisteredClaimNames.Sub, userID)
                 }),
                 Issuer = config.GetSection("JWT:Issuer").Value,
                 Audience = config.GetSection("JWT:Audience").Value,
