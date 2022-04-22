@@ -2,11 +2,14 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
 
 namespace API
 {
     public class TokenHandler
     {
+        private readonly JwtSecurityTokenHandler tokenHandler = new();
         private readonly IConfiguration config;
 
         public TokenHandler(IConfiguration config)
@@ -16,7 +19,6 @@ namespace API
 
         public string GenerateJWTToken(string userID)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
             var tokenKey = Encoding.UTF8.GetBytes(config.GetSection("JWT:Key").Value);
 
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -33,6 +35,24 @@ namespace API
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             return tokenHandler.WriteToken(token);
+        }
+
+        public string GetUserIDFromHeader(StringValues header)
+        {
+            var jwtToken = GetJWTTokenFromHeader(header);
+            return GetUserIDFromJWTToken(jwtToken);
+        }
+
+        private string GetJWTTokenFromHeader(StringValues header)
+        {
+            return header.ToString().Substring("Bearer ".Length);
+        }
+
+        private string GetUserIDFromJWTToken(string token)
+        {
+            var jwtToken = tokenHandler.ReadJwtToken(token);
+
+            return jwtToken.Subject;
         }
     }
 }
