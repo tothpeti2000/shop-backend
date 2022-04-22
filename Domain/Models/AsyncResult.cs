@@ -10,6 +10,5 @@ namespace Domain.Models
     {
         public bool Succeeded { get; set; }
         public List<string> ErrorMessages { get; set; }
-        public string? Token { get; set; }
     }
 }
