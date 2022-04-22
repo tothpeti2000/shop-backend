@@ -64,7 +64,8 @@ namespace DAL.Repos
 
             return new AsyncResult
             {
-                Succeeded = true
+                Succeeded = true,
+                Payload = user.Id
             };
         }
     }

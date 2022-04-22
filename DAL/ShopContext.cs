@@ -15,6 +15,8 @@ namespace DAL
         public DbSet<DbProduct> Products { get; set; }
         public DbSet<DbCategory> Categories { get; set; }
         public DbSet<DbReview> Reviews { get; set; }
+        public DbSet<DbCart> Carts { get; set; }
+        public DbSet<DbCartItem> CartItems { get; set; }
 
         public ShopContext(DbContextOptions<ShopContext> options): base(options) { }
 
@@ -25,6 +27,8 @@ namespace DAL
             ConfigureProducts(modelBuilder);
             ConfigureCategories(modelBuilder);
             ConfigureReviews(modelBuilder);
+            ConfigureCarts(modelBuilder);
+            ConfigureCartItems(modelBuilder);
         }
 
         private void ConfigureProducts(ModelBuilder modelBuilder)
@@ -68,6 +72,36 @@ namespace DAL
             modelBuilder.Entity<DbReview>()
                 .HasOne(r => r.Product)
                 .WithMany(p => p.Reviews);
+        }
+
+        private void ConfigureCarts(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<DbCart>()
+                .ToTable("Cart");
+
+            modelBuilder.Entity<DbCart>()
+                .HasKey(c => c.ID);
+
+            modelBuilder.Entity<DbCart>()
+                .HasOne(c => c.User)
+                .WithMany();
+        }
+
+        private void ConfigureCartItems(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<DbCartItem>()
+                .ToTable("CartItem");
+
+            modelBuilder.Entity<DbCartItem>()
+                .HasKey(ci => ci.ID);
+
+            modelBuilder.Entity<DbCartItem>()
+                .HasOne(ci => ci.Product)
+                .WithMany();
+
+            modelBuilder.Entity<DbCartItem>()
+                .HasOne(ci => ci.Cart)
+                .WithMany();
         }
     }
 }
