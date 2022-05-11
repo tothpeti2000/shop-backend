@@ -13,4 +13,10 @@ namespace Domain.Models
         public Product Product { get; set; }
         public Cart Cart { get; set; }
     }
+
+    public class CartItemToAdd
+    {
+        public int ProductID { get; set; }
+        public int Amount { get; set; }
+    }
 }
