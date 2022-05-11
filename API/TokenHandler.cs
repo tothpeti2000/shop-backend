@@ -36,23 +36,5 @@ namespace API
 
             return tokenHandler.WriteToken(token);
         }
-
-        public string GetUserIDFromHeader(StringValues header)
-        {
-            var jwtToken = GetJWTTokenFromHeader(header);
-            return GetUserIDFromJWTToken(jwtToken);
-        }
-
-        private string GetJWTTokenFromHeader(StringValues header)
-        {
-            return header.ToString().Substring("Bearer ".Length);
-        }
-
-        private string GetUserIDFromJWTToken(string token)
-        {
-            var jwtToken = tokenHandler.ReadJwtToken(token);
-
-            return jwtToken.Subject;
-        }
     }
 }
