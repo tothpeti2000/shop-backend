@@ -20,6 +20,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetProductList([FromQuery] PagingParams pagingParams, [FromQuery] SortFilterParams sortFilterParams)
         {
             var response = await productService.GetProductListAsync(pagingParams, null, sortFilterParams);
@@ -28,6 +29,7 @@ namespace API.Controllers
         }
 
         [HttpGet("search")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetProductsFromQuery([FromQuery] string q, [FromQuery] PagingParams pagingParams, [FromQuery] SortFilterParams sortFilterParams)
         {
             var response = await productService.GetProductListAsync(pagingParams, q, sortFilterParams);
@@ -36,6 +38,8 @@ namespace API.Controllers
         }
 
         [HttpGet("{ID}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetProductDetails(int ID)
         {
             var productDetails = await productService.GetProductDetailsAsync(ID);
@@ -50,6 +54,7 @@ namespace API.Controllers
         }
 
         [HttpGet("maxprice")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetMaxPrice()
         {
             var maxPrice = await productService.GetMaxPriceAsync();

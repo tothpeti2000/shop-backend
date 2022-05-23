@@ -19,6 +19,8 @@ namespace API.Controllers
         }
 
         [HttpPost("register")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> RegisterUser([FromBody] User user)
         {
             var result = await userService.CreateUser(user);
@@ -32,6 +34,8 @@ namespace API.Controllers
         }
 
         [HttpPost("login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> LoginUser([FromBody] LoginCredentials data)
         {
             var result = await userService.LoginUser(data);

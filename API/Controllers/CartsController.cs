@@ -20,6 +20,7 @@ namespace API.Controllers
         }
 
         [HttpPost("add")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> AddItemToCart([FromBody] CartItemToAdd item)
         {
             var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -29,6 +30,7 @@ namespace API.Controllers
         }
 
         [HttpGet("list")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetCartItems()
         {
             var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -38,6 +40,7 @@ namespace API.Controllers
         }
 
         [HttpGet("update/{cartItemID}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> UpdateCartItemAmount(int cartItemID, [FromQuery] int amount)
         {
             await cartService.UpdateCartItemAmount(cartItemID, amount);
@@ -45,6 +48,7 @@ namespace API.Controllers
         }
 
         [HttpGet("delete/{cartItemID}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> DeleteCartItem(int cartItemID)
         {
             await cartService.DeleteCartItem(cartItemID);

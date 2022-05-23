@@ -19,6 +19,7 @@ namespace API.Controllers
         }
 
         [HttpGet("top")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetTopCategories()
         {
             var topCategories = await categoryService.GetTopCategoriesAsync();
@@ -27,6 +28,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetCategoryNodes()
         {
             var categories = await categoryService.GetCategoryNodesAsync();
