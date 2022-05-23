@@ -85,6 +85,10 @@ namespace DAL
             modelBuilder.Entity<DbCart>()
                 .HasOne(c => c.User)
                 .WithMany();
+
+            modelBuilder.Entity<DbCart>()
+                .Property(c => c.Active)
+                .HasDefaultValue(true);
         }
 
         private void ConfigureCartItems(ModelBuilder modelBuilder)

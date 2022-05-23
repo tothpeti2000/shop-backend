@@ -1,7 +1,9 @@
 ﻿using Domain.Models;
+using Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace API.Controllers
 {
@@ -10,18 +12,42 @@ namespace API.Controllers
     [ApiController]
     public class CartsController : ControllerBase
     {
-        private readonly TokenHandler tokenHandler;
+        private readonly CartService cartService;
 
-        public CartsController(TokenHandler tokenHandler)
+        public CartsController(CartService cartService)
         {
-            this.tokenHandler = tokenHandler;
+            this.cartService = cartService;
         }
 
-        [HttpPost("add/{cartID}")]
-        public async Task<ActionResult> AddItemToCart(int cartID)
+        [HttpPost("add")]
+        public async Task<ActionResult> AddItemToCart([FromBody] CartItemToAdd item)
         {
-            var header = HttpContext.Request.Headers.Authorization;
-            var userID = tokenHandler.GetUserIDFromHeader(header);
+            var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            await cartService.AddItemToCart(item.ProductID, item.Amount, userID);
+
+            return Ok();
+        }
+
+        [HttpGet("list")]
+        public async Task<ActionResult> GetCartItems()
+        {
+            var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var cartItems = await cartService.GetCartItems(userID);
+
+            return Ok(cartItems);
+        }
+
+        [HttpGet("update/{cartItemID}")]
+        public async Task<ActionResult> UpdateCartItemAmount(int cartItemID, [FromQuery] int amount)
+        {
+            await cartService.UpdateCartItemAmount(cartItemID, amount);
+            return Ok();
+        }
+
+        [HttpGet("delete/{cartItemID}")]
+        public async Task<ActionResult> DeleteCartItem(int cartItemID)
+        {
+            await cartService.DeleteCartItem(cartItemID);
             return Ok();
         }
     }

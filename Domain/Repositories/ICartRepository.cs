@@ -11,5 +11,7 @@ namespace Domain.Repositories
     {
         public Task AddItemToCart(int productID, int amount, string userID);
         public Task<List<CartItem>> GetCartItems(string userID);
+        public Task UpdateCartItemAmount(int cartItemID, int amount);
+        public Task DeleteCartItem(int cartItemID);
     }
 }

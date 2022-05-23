@@ -19,6 +19,7 @@ namespace API.Controllers
             this.productService = productService;
         }
 
+        [HttpGet]
         public async Task<ActionResult> GetProductList([FromQuery] PagingParams pagingParams, [FromQuery] SortFilterParams sortFilterParams)
         {
             var response = await productService.GetProductListAsync(pagingParams, null, sortFilterParams);

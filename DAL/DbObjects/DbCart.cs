@@ -10,8 +10,10 @@ namespace DAL.DbObjects
     {
         public int ID { get; set; }
 
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public DbUser User { get; set; }
+
+        public bool Active { get; set; } = true;
 
         public List<DbCartItem> Items { get; set; }
     }

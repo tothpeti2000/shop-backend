@@ -1,4 +1,9 @@
-﻿using Domain.Repositories;
+﻿using DAL.DbObjects;
+using DAL.Profiles;
+using Domain.Models;
+using Domain.Repositories;
+using Domain.Services;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +12,70 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    public class CartRepository: ICartRepository
+    public class CartRepository : ICartRepository
     {
+        private readonly ShopContext db;
+        private readonly Mapper<DbCartProfile> mapper = new();
+
+        public CartRepository(ShopContext db)
+        {
+            this.db = db;
+        }
+
+        public async Task AddItemToCart(int productID, int amount, string userID)
+        {
+            var dbCart = await db.Carts
+                .FirstOrDefaultAsync(c => c.UserID == userID && c.Active);
+
+            if (dbCart == null)
+            {
+                dbCart = new DbCart
+                {
+                    UserID = userID,
+                };
+
+                await db.Carts.AddAsync(dbCart);
+                db.SaveChanges();
+            }
+
+            var cartItem = new DbCartItem
+            {
+                ProductID = productID,
+                Amount = amount,
+                CartID = dbCart.ID,
+            };
+
+            db.CartItems.Add(cartItem);
+            db.SaveChanges();
+        }
+
+        public async Task<List<CartItem>> GetCartItems(string userID)
+        {
+            var dbCart = await db.Carts
+                .Include(c => c.Items)
+                .FirstOrDefaultAsync(c => c.UserID == userID && c.Active);
+
+            return mapper.Map<List<DbCartItem>, List<CartItem>>(dbCart.Items);
+        }
+
+        public async Task UpdateCartItemAmount(int cartItemID, int amount)
+        {
+            var cartItem = await db.CartItems
+                .FirstOrDefaultAsync(ci => ci.ID == cartItemID);
+
+            cartItem.Amount = amount;
+            db.SaveChanges();
+        }
+
+        public async Task DeleteCartItem(int cartItemID)
+        {
+            var cartItem = await db.CartItems
+                .FirstOrDefaultAsync(ci => ci.ID == cartItemID);
+
+            db.CartItems
+                .Remove(cartItem);
+
+            db.SaveChanges();
+        }
     }
 }
