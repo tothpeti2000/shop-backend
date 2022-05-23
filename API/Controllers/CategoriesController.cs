@@ -26,6 +26,7 @@ namespace API.Controllers
             return Ok(topCategories);
         }
 
+        [HttpGet]
         public async Task<ActionResult> GetCategoryNodes()
         {
             var categories = await categoryService.GetCategoryNodesAsync();
