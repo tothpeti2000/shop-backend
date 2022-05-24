@@ -2,6 +2,7 @@
 using Domain.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace API.Controllers
 {
@@ -47,6 +48,15 @@ namespace API.Controllers
             }
 
             return BadRequest(result.ErrorMessages);
+        }
+
+        [HttpGet("logout")]
+        public async Task<ActionResult> LogoutUser()
+        {
+            var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            //await userService.LogoutUser(userID);
+
+            return Ok();
         }
     }
 }

@@ -36,8 +36,8 @@ namespace DAL.Repos
             var sorted = Sort(filtered, sortFilterParams.Sort);
 
             var dbProducts = await sorted
-                .Skip((pagingParams.Page - 1) * pagingParams.Limit)
-                .Take(pagingParams.Limit)
+                .Skip((pagingParams.Page - 1) * pagingParams.Count)
+                .Take(pagingParams.Count)
                 .ToArrayAsync();
 
             var totalProducts = sorted.Count();
@@ -48,7 +48,7 @@ namespace DAL.Repos
             {
                 Items = pagedProducts,
                 CurrentPage = pagingParams.Page,
-                TotalPages = (int)Math.Ceiling((double)totalProducts / pagingParams.Limit),
+                TotalPages = (int)Math.Ceiling((double)totalProducts / pagingParams.Count),
                 TotalItems = totalProducts
             };
         }
@@ -75,25 +75,25 @@ namespace DAL.Repos
 
         private IQueryable<DbProduct> Sort(IQueryable<DbProduct> products, string mode)
         {
-            if (mode == "nameAsc")
+            if (mode == "nameAZ")
             {
                 return products
                 .OrderBy(p => p.Name);
             }
 
-            if (mode == "nameDesc")
+            if (mode == "nameZA")
             {
                 return products
                 .OrderByDescending(p => p.Name);
             }
 
-            if (mode == "priceAsc")
+            if (mode == "priceLTH")
             {
                 return products
                 .OrderBy(p => p.Price);
             }
 
-            if (mode == "priceDesc")
+            if (mode == "priceHTL")
             {
                 return products
                 .OrderByDescending(p => p.Price);

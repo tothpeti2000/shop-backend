@@ -26,5 +26,10 @@ namespace Domain.Services
         {
             return await repository.LoginUserAsync(data);
         }
+
+        /*public async Task LogoutUser(string userID)
+        {
+            await repository.LogoutUserAsync(userID);
+        }*/
     }
 }

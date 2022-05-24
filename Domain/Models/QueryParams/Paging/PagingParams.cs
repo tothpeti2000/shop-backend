@@ -10,53 +10,22 @@ namespace Domain.Models.QueryParams.Paging
     {
         // Default values
         private int page = 1;
-        private int limit = 20;
+        private int count = 20;
 
         private readonly int minPage = 1;
-        private readonly int minLimit = 0;
-        private readonly int maxLimit = 50;
+        private readonly int minCount = 0;
+        private readonly int maxCount = 50;
 
         public int Page
         {
-            get
-            {
-                return page;
-            }
-
-            set
-            {
-                if (value < minPage)
-                {
-                    page = minPage;
-                    
-                }
-                else
-                {
-                    page = value;
-                }
-            }
+            get => page;
+            set => page = value < minPage ? minPage : value;
         }
 
-        public int Limit
+        public int Count
         {
-            get
-            {
-                return limit;
-            }
-
-            set
-            {
-                if (value < minLimit)
-                {
-                    limit = minLimit;
-                } else if (value > maxLimit)
-                {
-                    limit = maxLimit;
-                } else
-                {
-                    limit = value;
-                }
-            }
+            get => count;
+            set => count = value < minCount ? minCount : value > maxCount ? maxCount : value;
         }
     }
 }

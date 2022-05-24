@@ -9,17 +9,14 @@ namespace Domain.Models.QueryParams.SortFilter
     public class SortFilterParams
     {
         // Default values
-        private string sort = "none";
-        private string filter = "none";
+        private string sort = "all";
+        private string filter = "all";
 
-        private string[] sortOptions = new string[] { "nameAsc", "nameDesc", "priceAsc", "priceDesc" };
+        private string[] sortOptions = new string[] { "nameAZ", "nameZA", "priceLTH", "priceHTL" };
 
         public string Sort
         {
-            get 
-            { 
-                return sort; 
-            }
+            get => sort; 
 
             set
             {
@@ -32,19 +29,16 @@ namespace Domain.Models.QueryParams.SortFilter
                     }
                 }
 
-                sort = "none";
+                sort = "all";
             }
         }
 
         public string Filter { 
-            get
-            {
-                return filter;
-            }
+            get => filter;
 
             set
             {
-                filter = "none";
+                filter = "all";
             }
         }
     }

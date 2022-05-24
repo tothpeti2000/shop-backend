@@ -11,5 +11,6 @@ namespace Domain.Repositories
     {
         public Task<AsyncResult> CreateUserAsync(User user);
         public Task<AsyncResult> LoginUserAsync(LoginCredentials data);
+        //public Task LogoutUserAsync(string userID);
     }
 }
