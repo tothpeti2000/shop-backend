@@ -32,7 +32,7 @@ namespace DAL.Repos
         {
             var queryMatches = GetQueryMatches(query);
             // TODO: Add filtering
-            var filtered = queryMatches;
+            var filtered = FilterByPrice(queryMatches, sortFilterParams.FromPrice, sortFilterParams.ToPrice);
             var sorted = Sort(filtered, sortFilterParams.Sort);
 
             var dbProducts = await sorted
@@ -101,6 +101,12 @@ namespace DAL.Repos
 
             return products
                 .OrderBy(p => p.ID);
+        }
+
+        private IQueryable<DbProduct> FilterByPrice(IQueryable<DbProduct> products, float fromPrice, float toPrice)
+        {
+            return products
+                .Where(p => p.Price >= fromPrice && p.Price <= toPrice);
         }
     }
 }

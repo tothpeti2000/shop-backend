@@ -10,7 +10,8 @@ namespace Domain.Models.QueryParams.SortFilter
     {
         // Default values
         private string sort = "all";
-        private string filter = "all";
+        private float fromPrice = 0;
+        private float toPrice = 0;
 
         private string[] sortOptions = new string[] { "nameAZ", "nameZA", "priceLTH", "priceHTL" };
 
@@ -33,13 +34,15 @@ namespace Domain.Models.QueryParams.SortFilter
             }
         }
 
-        public string Filter { 
-            get => filter;
+        public float FromPrice
+        {
+            get => fromPrice;
+            set => fromPrice = value < 0 ? 0 : value > toPrice ? toPrice : value;
+        }
 
-            set
-            {
-                filter = "all";
-            }
+        public float ToPrice { 
+            get => toPrice;
+            set => toPrice = value < fromPrice ? fromPrice : value;
         }
     }
 }
