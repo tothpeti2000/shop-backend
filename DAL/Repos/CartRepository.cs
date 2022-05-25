@@ -65,7 +65,11 @@ namespace DAL.Repos
                 .Include(c => c.Items)
                 .FirstOrDefaultAsync(c => c.UserID == userID && c.Active);
 
-            return mapper.Map<List<DbCartItem>, List<CartItem>>(dbCart.Items);
+            var dbCartItems = await db.CartItems
+                .Where(ci => ci.CartID == dbCart.ID)
+                .ToListAsync();
+
+            return mapper.Map<List<DbCartItem>, List<CartItem>>(dbCartItems);
         }
 
         public async Task UpdateCartItemAmount(int cartItemID, int amount)

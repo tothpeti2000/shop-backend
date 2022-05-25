@@ -15,6 +15,5 @@ namespace DAL.DbObjects
         public DbProduct Product { get; set; }
 
         public int CartID { get; set; }
-        public DbCart Cart { get; set; }
     }
 }

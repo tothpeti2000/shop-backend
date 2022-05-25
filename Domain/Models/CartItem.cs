@@ -19,4 +19,10 @@ namespace Domain.Models
         public int ProductID { get; set; }
         public int Amount { get; set; }
     }
+
+    public class CartItemToUpdate
+    {
+        public int ItemID { get; set; }
+        public int Amount { get; set; }
+    }
 }

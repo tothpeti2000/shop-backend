@@ -102,10 +102,6 @@ namespace DAL
             modelBuilder.Entity<DbCartItem>()
                 .HasOne(ci => ci.Product)
                 .WithMany();
-
-            modelBuilder.Entity<DbCartItem>()
-                .HasOne(ci => ci.Cart)
-                .WithMany();
         }
     }
 }

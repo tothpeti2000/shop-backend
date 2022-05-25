@@ -39,11 +39,11 @@ namespace API.Controllers
             return Ok(cartItems);
         }
 
-        [HttpGet("update/{cartItemID}")]
+        [HttpPost("update")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> UpdateCartItemAmount(int cartItemID, [FromQuery] int amount)
+        public async Task<ActionResult> UpdateCartItemAmount([FromBody] CartItemToUpdate item)
         {
-            await cartService.UpdateCartItemAmount(cartItemID, amount);
+            await cartService.UpdateCartItemAmount(item.ItemID, item.Amount);
             return Ok();
         }
 
