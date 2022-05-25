@@ -38,14 +38,24 @@ namespace DAL.Repos
                 db.SaveChanges();
             }
 
-            var cartItem = new DbCartItem
-            {
-                ProductID = productID,
-                Amount = amount,
-                CartID = dbCart.ID,
-            };
+            var dbCartItem = await db.CartItems
+                .FirstOrDefaultAsync(ci => ci.ProductID == productID && ci.CartID == dbCart.ID);
 
-            db.CartItems.Add(cartItem);
+            if (dbCartItem == null)
+            {
+                dbCartItem = new DbCartItem
+                {
+                    ProductID = productID,
+                    Amount = amount,
+                    CartID = dbCart.ID,
+                };
+
+                db.CartItems.Add(dbCartItem);
+            } else
+            {
+                dbCartItem.Amount += amount;
+            }
+
             db.SaveChanges();
         }
 
